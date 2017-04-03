@@ -18,6 +18,7 @@ package com.googlesource.gerrit.plugins.support
 
 import java.io.File
 import java.util.zip.{ZipEntry, ZipFile}
+import org.jutils.jhardware.model.ProcessorInfo
 
 import com.google.gson.{Gson, JsonPrimitive}
 import org.scalatest.{FlatSpec, Matchers}
@@ -37,6 +38,12 @@ class GerritSupportTest extends FlatSpec with Matchers {
     val version = new GerritVersionCommand().execute.content
 
     version.getAsString should not be null
+  }
+
+  "cpu-info command" should "return a valid json string" in {
+    val cpuInfo = new CpuInfoCommand().execute.content
+
+    cpuInfo should not be null
   }
 
   "Bundle builder" should "create an output zip file" in {

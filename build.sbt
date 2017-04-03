@@ -13,6 +13,7 @@ val scalatestV = "3.0.1"
 val gsonV = "2.7" // same version provided by Gerrit
 val jodaV = "2.9.4" // same version provided by Gerrit
 val scalaGuiceV = "4.1.0"
+val jHardwareV = "0.8.4"
 
 
 libraryDependencies ++= Seq(
@@ -24,9 +25,11 @@ libraryDependencies ++= Seq(
 
   // added to assembly
   "org.scalatra"          %%  "scalatra"          % scalatraV,
+  "org.jhardware"         %   "jHardware"         % jHardwareV,
 
 
-  // test dependencies
+
+// test dependencies
   "org.scalatra"          %%  "scalatra-scalatest"% scalatraV   % Test,
   "org.scalatest"         %%  "scalatest"         % scalatestV  % Test,
   "net.codingwell"        %%  "scala-guice"       % scalaGuiceV % Test
