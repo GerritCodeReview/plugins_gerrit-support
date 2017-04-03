@@ -17,8 +17,9 @@
 package com.googlesource.gerrit.plugins.support
 
 import com.google.gerrit.common.Version
-import com.google.gson.{JsonElement, JsonPrimitive}
+import com.google.gson.{Gson, JsonElement, JsonPrimitive}
 import com.google.inject._
+import org.jutils.jhardware.HardwareInfo.getProcessorInfo
 
 case class CommandResult(entryName: String, content: JsonElement)
 
@@ -36,4 +37,8 @@ class GerritSupportCommandFactory @Inject()(val injector: Injector) {
 
 class GerritVersionCommand extends GerritSupportCommand {
   def execute = CommandResult("version.json", new JsonPrimitive(Version.getVersion))
+}
+
+class CpuInfoCommand extends GerritSupportCommand {
+  def execute = CommandResult("cpu-info.json", new Gson().toJsonTree(getProcessorInfo))
 }

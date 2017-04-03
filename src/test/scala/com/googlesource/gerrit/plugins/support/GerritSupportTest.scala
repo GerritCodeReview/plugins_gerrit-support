@@ -17,14 +17,15 @@
 package com.googlesource.gerrit.plugins.support
 
 import java.io.File
-import java.util.zip.{ZipEntry, ZipFile}
+import java.util.zip.ZipFile
 
 import com.google.gson.{Gson, JsonPrimitive}
+import com.googlesource.gerrit.plugins.support.FileMatchers._
 import org.scalatest.{FlatSpec, Matchers}
-import FileMatchers._
+
 import scala.collection.JavaConverters._
 
-class GerritSupportTest extends FlatSpec with Matchers {
+class GerritSupportTest extends FlatSpec with Matchers with JsonMatcher {
   val tmpPath = File.createTempFile(classOf[GerritSupportTest].getName, "").getParentFile
 
   def tmpFile = {
@@ -37,6 +38,13 @@ class GerritSupportTest extends FlatSpec with Matchers {
     val version = new GerritVersionCommand().execute.content
 
     version.getAsString should not be null
+  }
+
+  "cpu-info command" should "return a json object with some fields" in {
+    val cpuInfo = new CpuInfoCommand().execute.content
+
+    cpuInfo should not be null
+    cpuInfo.getAsJsonObject should haveValidFields
   }
 
   "Bundle builder" should "create an output zip file" in {

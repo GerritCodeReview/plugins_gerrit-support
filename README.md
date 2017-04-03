@@ -16,4 +16,3 @@ Example:
    [...]
    [info] Packaging /Users/lucamilanesio/gerrithub/gerrit-support/target/scala-2.11/gerrit-support.jar ...
 ```
-
