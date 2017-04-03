@@ -17,8 +17,11 @@
 package com.googlesource.gerrit.plugins.support
 
 import com.google.gerrit.common.Version
-import com.google.gson.{JsonElement, JsonPrimitive}
+import com.google.gson.{Gson, JsonElement, JsonObject, JsonPrimitive}
 import com.google.inject._
+import org.jutils.jhardware.HardwareInfo.getProcessorInfo
+
+import scala.util.Try
 
 case class CommandResult(entryName: String, content: JsonElement)
 
@@ -36,4 +39,26 @@ class GerritSupportCommandFactory @Inject()(val injector: Injector) {
 
 class GerritVersionCommand extends GerritSupportCommand {
   def execute = CommandResult("version.json", new JsonPrimitive(Version.getVersion))
+}
+
+class CpuInfoCommand extends GerritSupportCommand {
+  implicit val gson = new Gson
+
+  def execute = CommandResult("cpu-info.json",
+    gson.toJsonTree(
+      Try {
+        getProcessorInfo
+      } getOrElse {
+        ErrorInfo("error" -> s"CPU info not available on ${System.getProperty("os.name")}")
+      }))
+}
+
+object ErrorInfo {
+  def apply[T](attributes: (String, T)*)(implicit gson: Gson): JsonObject =
+    attributes.foldLeft(new JsonObject) {
+      (json, pair) => {
+        json.add(pair._1, gson.toJsonTree(pair._2))
+        json
+      }
+    }
 }

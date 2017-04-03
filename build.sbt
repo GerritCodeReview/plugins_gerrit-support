@@ -6,30 +6,23 @@ version := "1.0-SNAPSHOT"
 
 scalaVersion := "2.11.8"
 
-val guiceV = "3.0"
-val gerritV = "2.11"
 val scalatraV = "2.5.+"
-val scalatestV = "3.0.1"
-val gsonV = "2.7" // same version provided by Gerrit
-val jodaV = "2.9.4" // same version provided by Gerrit
-val scalaGuiceV = "4.1.0"
-
 
 libraryDependencies ++= Seq(
   // provided by gerrit
-  "com.google.inject"     %   "guice"             % guiceV      % Provided,
-  "com.google.gerrit"     %   "gerrit-plugin-api" % gerritV     % Provided,
-  "com.google.code.gson"  %   "gson"              % gsonV       % Provided,
-  "joda-time"             %   "joda-time"         % jodaV       % Provided,
+  "com.google.inject"     %   "guice"             % "3.0"       % Provided,
+  "com.google.gerrit"     %   "gerrit-plugin-api" % "2.11"      % Provided,
+  "com.google.code.gson"  %   "gson"              % "2.7"       % Provided,
+  "joda-time"             %   "joda-time"         % "2.9.4"     % Provided,
 
   // added to assembly
   "org.scalatra"          %%  "scalatra"          % scalatraV,
-
+  "org.jhardware"         %   "jHardware"         % "0.8.4",
 
   // test dependencies
   "org.scalatra"          %%  "scalatra-scalatest"% scalatraV   % Test,
-  "org.scalatest"         %%  "scalatest"         % scalatestV  % Test,
-  "net.codingwell"        %%  "scala-guice"       % scalaGuiceV % Test
+  "org.scalatest"         %%  "scalatest"         % "3.0.1"     % Test,
+  "net.codingwell"        %%  "scala-guice"       % "4.1.0"     % Test
   )
 
 assemblyJarName in assembly := s"$pluginName.jar"
