@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1b9854c_09f6ed39",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-04-04T07:10:55Z",
+      "side": 1,
+      "message": "We use imperative in comment message:\n\n   Add capability ...",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 5
+      },
+      "revId": "ab108c9ee7bccdbbd04d6af0b0792c6a86c24a57",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ac3169e6_f55aa99d",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-04-04T07:10:55Z",
+      "side": 1,
+      "message": "Not really a \"usage\" but rather an example.\n\nIt shouldn\u0027t be in the README.md but rather in the internal documentation. The README.md is only for providing an overview and how to build.\n\nSee other plugins and how they document the REST API they are exposing.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 8
+      },
+      "revId": "ab108c9ee7bccdbbd04d6af0b0792c6a86c24a57",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69a39e69_5448e082",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-04-04T07:10:55Z",
+      "side": 1,
+      "message": "needed?",
+      "range": {
+        "startLine": 23,
+        "startChar": 7,
+        "endLine": 23,
+        "endChar": 9
+      },
+      "revId": "ab108c9ee7bccdbbd04d6af0b0792c6a86c24a57",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a19dfe56_a4669cf9",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-04-04T07:10:55Z",
+      "side": 1,
+      "message": "localhost:8080?",
+      "range": {
+        "startLine": 23,
+        "startChar": 83,
+        "endLine": 23,
+        "endChar": 97
+      },
+      "revId": "ab108c9ee7bccdbbd04d6af0b0792c6a86c24a57",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4989405_3e5d9463",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-04-04T07:10:55Z",
+      "side": 1,
+      "message": "Not really: it contains ALL the information requested in the given JSON payload. One file per JSON field, isn\u0027t it?",
+      "range": {
+        "startLine": 42,
+        "startChar": 19,
+        "endLine": 42,
+        "endChar": 49
+      },
+      "revId": "ab108c9ee7bccdbbd04d6af0b0792c6a86c24a57",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55e5138a_e42e175e",
+        "filename": "build.sbt",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-04-04T07:10:55Z",
+      "side": 1,
+      "message": "Does it make sense overall to split the dependencies in two separate lines?\nWhat\u0027s wrong in putting it together with libraryDependencies?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 24
+      },
+      "revId": "ab108c9ee7bccdbbd04d6af0b0792c6a86c24a57",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d23a921_6bfa4cf6",
+        "filename": "src/test/scala/com/googlesource/gerrit/plugins/support/GerritSupportTest.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-04-04T07:10:55Z",
+      "side": 1,
+      "message": "JSON String? I thought it was returning an object, isn\u0027t it?",
+      "range": {
+        "startLine": 43,
+        "startChar": 36,
+        "endLine": 43,
+        "endChar": 55
+      },
+      "revId": "ab108c9ee7bccdbbd04d6af0b0792c6a86c24a57",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c48a7eb_dc39a8ff",
+        "filename": "src/test/scala/com/googlesource/gerrit/plugins/support/GerritSupportTest.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-04-04T07:10:55Z",
+      "side": 1,
+      "message": "Not strong enough: it should at least be a JSON object with \"some\" non empty fields.",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 30
+      },
+      "revId": "ab108c9ee7bccdbbd04d6af0b0792c6a86c24a57",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
