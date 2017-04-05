@@ -18,15 +18,15 @@ collected and archived in the .zip file.
 
 - gerritVersion - JSON String with the version of running Gerrit server
 - cpuInfo - JSON Object with all the CPU information collected by [jHardware](https://github.com/profesorfalken/jHardware)
-
+- memInfo - JSON Object with all the Memory information collected by [jHardware](https://github.com/profesorfalken/jHardware)
 
 EXAMPLES
 --------
 
-Ask the server to prepare zip file for version and cpuinfo
+Ask the server to prepare zip file for version, cpuinfo and meminfo
 
 >     curl -v -H "Content-Type: application/json" \
->        -d '{"gerritVersion": true,"cpuInfo": true }' \
+>        -d '{"gerritVersion": true,"cpuInfo": true, "memInfo": true }' \
 >        http://host:port/plugins/gerrit-support/collect
 
 ```
