@@ -47,6 +47,13 @@ class GerritSupportTest extends FlatSpec with Matchers with JsonMatcher {
     cpuInfo.getAsJsonObject should haveValidFields
   }
 
+  "mem-info command" should "return a json object with some fields" in {
+    val cpuInfo = new MemInfoCommand().execute.content
+
+    cpuInfo should not be null
+    cpuInfo.getAsJsonObject should haveValidFields
+  }
+
   "Bundle builder" should "create an output zip file" in {
     val zipFile = new SupportBundleBuilder(tmpPath.toPath, new Gson).build
 
