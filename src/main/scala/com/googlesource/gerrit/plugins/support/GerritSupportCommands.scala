@@ -16,7 +16,11 @@
 
 package com.googlesource.gerrit.plugins.support
 
+import java.io.File
+import java.nio.file.Files
+
 import com.google.gerrit.common.Version
+import com.google.gerrit.server.config.SitePaths
 import com.google.gson.{Gson, JsonElement, JsonObject, JsonPrimitive}
 import com.google.inject._
 import org.jutils.jhardware.HardwareInfo.{getMemoryInfo, getProcessorInfo}
@@ -65,6 +69,20 @@ class MemInfoCommand extends GerritSupportCommand {
       }))
 }
 
+class DiskInfoCommand @Inject() (sitePaths:SitePaths) extends GerritSupportCommand {
+  implicit val gson = new Gson
+  case class DiskInfoBean(path: String, diskFree: Long, diskUsable: Long, diskTotal: Long)
+
+  def execute = {
+    val path = sitePaths.site_path
+    val store = Files.getFileStore(path)
+    CommandResult("disk-info.json",
+      gson.toJsonTree(DiskInfoBean(path.toString, store.getUnallocatedSpace,
+        store.getUsableSpace, store.getTotalSpace))
+    )
+  }
+
+}
 object ErrorInfo {
   def apply[T](attributes: (String, T)*)(implicit gson: Gson): JsonObject =
     attributes.foldLeft(new JsonObject) {

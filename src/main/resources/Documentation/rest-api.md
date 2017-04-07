@@ -23,10 +23,11 @@ collected and archived in the .zip file.
 EXAMPLES
 --------
 
-Ask the server to prepare zip file for version, cpuinfo and meminfo
+Ask the server to prepare zip file for version, cpuinfo, meminfo and diskInfo
 
 >     curl -v -H "Content-Type: application/json" \
->        -d '{"gerritVersion": true,"cpuInfo": true, "memInfo": true }' \
+>        -d '{"gerritVersion": true,"cpuInfo": true, \
+>             "memInfo": true, "diskInfo": true }' \
 >        http://host:port/plugins/gerrit-support/collect
 
 ```

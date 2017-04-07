@@ -11,7 +11,7 @@ val scalatraV = "2.5.+"
 libraryDependencies ++= Seq(
   // provided by gerrit
   "com.google.inject"     %   "guice"             % "3.0"       % Provided,
-  "com.google.gerrit"     %   "gerrit-plugin-api" % "2.11"      % Provided,
+  "com.google.gerrit"     %   "gerrit-plugin-api" % "2.13"      % Provided,
   "com.google.code.gson"  %   "gson"              % "2.7"       % Provided,
   "joda-time"             %   "joda-time"         % "2.9.4"     % Provided,
 
