@@ -16,23 +16,27 @@
 
 package com.googlesource.gerrit.plugins.support
 
-import java.io.{ File, FileNotFoundException }
+import java.io.{File, FileNotFoundException}
 
 import com.google.gerrit.extensions.annotations._
-import com.google.inject.{ Inject, Singleton }
+import com.google.gerrit.server.CurrentUser
+import com.google.inject.{Inject, Provider, Singleton}
 import eu.medsea.mimeutil.detector.ExtensionMimeDetector
 import org.scalatra._
 import org.scalatra.util.Mimes
 
 import scala.collection.JavaConversions._
-import scala.util.{ Failure, Success, Try }
+import scala.util.{Failure, Success}
 
 @Singleton
 @Export("/collect*")
-class GerritSupportServlet @Inject() (processor: RequestProcessor, bundleFactory: SupportBundleFile, mimeDetector: ExtensionMimeDetector)
+class GerritSupportServlet @Inject() (val processor: RequestProcessor,
+                                      bundleFactory: SupportBundleFile,
+                                      mimeDetector: ExtensionMimeDetector,
+                                      currentUserProvider: Provider[CurrentUser])
     extends ScalatraServlet with Mimes {
 
-  post("/") {
+  post("/") (requireAdministrateServerPermissions {
     processor.processRequest(request.body) match {
       case Success(zipped) =>
         Created("OK", Map(
@@ -40,9 +44,9 @@ class GerritSupportServlet @Inject() (processor: RequestProcessor, bundleFactory
       case Failure(e) =>
         InternalServerError(reason = e.getLocalizedMessage)
     }
-  }
+  })
 
-  get("/:filename") {
+  get("/:filename") (requireAdministrateServerPermissions {
     val bundleFilename = params.getOrElse("filename", halt(BadRequest("Missing or invalid bundle name")))
 
     bundleFactory(bundleFilename) match {
@@ -53,6 +57,13 @@ class GerritSupportServlet @Inject() (processor: RequestProcessor, bundleFactory
 
       case Failure(e: IllegalArgumentException) => BadRequest("Invalid bundle name")
 
+    }
+  })
+
+  private def requireAdministrateServerPermissions(block: => ActionResult) = {
+    currentUserProvider.get match {
+      case user if user.isIdentifiedUser && user.getCapabilities.canAdministrateServer => block
+      case _ => Forbidden("ACCESS DENIED TO NON-ADMINS")
     }
   }
 
