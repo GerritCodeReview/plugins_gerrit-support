@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b079d22a_50076653",
+        "filename": "build.sbt",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-04-13T20:35:43Z",
+      "side": 1,
+      "message": "Do we really need 2.13 for requesting the diskinfo? Why?",
+      "range": {
+        "startLine": 14,
+        "startChar": 56,
+        "endLine": 14,
+        "endChar": 57
+      },
+      "revId": "f50dd24b47b058f84cc1d1344681cf81e18e26f4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ecfec08_be637686",
+        "filename": "src/main/resources/Documentation/rest-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-04-13T20:35:43Z",
+      "side": 1,
+      "message": "better to do one setting per line, indented:\n\n   {\n      \"gerritVersion\": true,\n      \"cpuInfo\": true,\n      \"diskInfo\": true\n   }",
+      "range": {
+        "startLine": 29,
+        "startChar": 36,
+        "endLine": 30,
+        "endChar": 49
+      },
+      "revId": "f50dd24b47b058f84cc1d1344681cf81e18e26f4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d11a5983_a295004c",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/GerritSupportCommands.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-04-13T20:35:43Z",
+      "side": 1,
+      "message": "We don\u0027t typically add \"Bean\" at the end of Scala case classes.",
+      "range": {
+        "startLine": 74,
+        "startChar": 13,
+        "endLine": 74,
+        "endChar": 25
+      },
+      "revId": "f50dd24b47b058f84cc1d1344681cf81e18e26f4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab6b924a_5f8db9b8",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/GerritSupportCommands.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-04-13T20:35:43Z",
+      "side": 1,
+      "message": "The most critical path to check is where the Git repos are stored.\nCan we add it as specific entry?",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 34
+      },
+      "revId": "f50dd24b47b058f84cc1d1344681cf81e18e26f4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9c6d7372_f3af3d39",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/GerritSupportCommands.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-04-13T20:35:43Z",
+      "side": 1,
+      "message": "This is more going to be a Seq[DiskInfoBean]",
+      "range": {
+        "startLine": 80,
+        "startChar": 22,
+        "endLine": 81,
+        "endChar": 50
+      },
+      "revId": "f50dd24b47b058f84cc1d1344681cf81e18e26f4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
