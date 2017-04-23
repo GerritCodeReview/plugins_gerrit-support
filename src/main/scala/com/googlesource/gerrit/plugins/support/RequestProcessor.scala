@@ -21,14 +21,13 @@ import scala.collection.JavaConverters._
 import scala.util.Try
 
 @Singleton
-class RequestProcessor @Inject()(injector: Injector,
+class RequestProcessor @Inject()(val zipped: SupportBundleBuilder,
                                  gson: Gson,
                                  commandFactory: GerritSupportCommandFactory) {
 
   def processRequest(body: String): Try[SupportBundleBuilder] = {
     Try {
       val requestJson = gson.fromJson(body, classOf[JsonObject])
-      val zipped: SupportBundleBuilder = injector.getInstance(classOf[SupportBundleBuilder])
 
       try {
         requestJson
