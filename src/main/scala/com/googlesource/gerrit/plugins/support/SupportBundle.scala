@@ -22,15 +22,15 @@ import java.nio.file.Path
 import java.util.UUID
 import java.util.zip.{ZipEntry, ZipOutputStream}
 
-import com.google.gerrit.extensions.annotations.PluginData
 import com.google.gson.Gson
 import com.google.inject.Inject
+import com.googlesource.gerrit.plugins.support.annotations.PluginDataPath
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 
 import scala.util.{Failure, Success, Try}
 
-class SupportBundleFile @Inject()(@PluginData val pluginData: Path) {
+class SupportBundleFile @Inject()(@PluginDataPath val pluginData: Path) {
 
   import SupportBundle._
 
@@ -47,7 +47,7 @@ class SupportBundleFile @Inject()(@PluginData val pluginData: Path) {
   }
 }
 
-class SupportBundleBuilder @Inject()(@PluginData val directory: Path, gson: Gson) {
+class SupportBundleBuilder @Inject()(@PluginDataPath val directory: Path, gson: Gson) {
 
   import SupportBundle._
 

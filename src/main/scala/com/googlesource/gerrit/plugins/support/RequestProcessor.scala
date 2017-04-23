@@ -14,21 +14,20 @@
 
 package com.googlesource.gerrit.plugins.support
 
-import com.google.gson.{Gson, JsonObject}
+import com.google.gson.{Gson, JsonElement, JsonObject}
 import com.google.inject.{Inject, Injector, Singleton}
 
 import scala.collection.JavaConverters._
 import scala.util.Try
 
 @Singleton
-class RequestProcessor @Inject()(injector: Injector,
+class RequestProcessor @Inject()(val zipped: SupportBundleBuilder,
                                  gson: Gson,
                                  commandFactory: GerritSupportCommandFactory) {
 
   def processRequest(body: String): Try[SupportBundleBuilder] = {
     Try {
-      val requestJson = gson.fromJson(body, classOf[JsonObject])
-      val zipped: SupportBundleBuilder = injector.getInstance(classOf[SupportBundleBuilder])
+      val requestJson = gson.fromJson(body, classOf[JsonElement]).getAsJsonObject
 
       try {
         requestJson
