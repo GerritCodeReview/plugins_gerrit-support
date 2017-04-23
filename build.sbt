@@ -6,7 +6,9 @@ version := "1.0-SNAPSHOT"
 
 scalaVersion := "2.11.8"
 
-val scalatraV = "2.5.+"
+val scalatraV = "2.4.+"
+
+resolvers += Resolver.mavenLocal
 
 libraryDependencies ++= Seq(
   // provided by gerrit
@@ -17,7 +19,7 @@ libraryDependencies ++= Seq(
 
   // added to assembly
   "org.scalatra"          %%  "scalatra"          % scalatraV,
-  "org.jhardware"         %   "jHardware"         % "0.8.4",
+  "org.jhardware"         %   "jHardware"         % "0.8.4-java7",
 
   // test dependencies
   "org.scalatra"          %%  "scalatra-scalatest"% scalatraV   % Test,
@@ -27,8 +29,14 @@ libraryDependencies ++= Seq(
 
 assemblyJarName in assembly := s"$pluginName.jar"
 
+scalacOptions += "-target:jvm-1.7"
+
+javacOptions ++= Seq("-source", "1.7", "-target", "1.7")
+
 packageOptions in (Compile, packageBin) +=  {
   Package.ManifestAttributes(
     "Gerrit-ApiType" -> "plugin",
-    "Gerrit-PluginName" -> pluginName)
+    "Gerrit-PluginName" -> pluginName,
+    "Gerrit-HttpModule" -> "com.googlesource.gerrit.plugins.support.HttpModule"
+  )
 }

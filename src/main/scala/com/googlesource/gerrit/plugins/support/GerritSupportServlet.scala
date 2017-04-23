@@ -29,7 +29,6 @@ import scala.collection.JavaConversions._
 import scala.util.{Failure, Success}
 
 @Singleton
-@Export("/collect*")
 class GerritSupportServlet @Inject() (val processor: RequestProcessor,
                                       bundleFactory: SupportBundleFile,
                                       mimeDetector: ExtensionMimeDetector,
