@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b04fef1_1515d339",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/HttpModule.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2017-04-24T07:34:44Z",
+      "side": 1,
+      "message": "should be after the copyright block",
+      "revId": "58e4922c293514d2e4c6b74c551deb5f89d59096",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
