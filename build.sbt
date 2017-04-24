@@ -17,7 +17,6 @@ libraryDependencies ++= Seq(
 
   // added to assembly
   "org.scalatra"          %%  "scalatra"          % scalatraV,
-  "org.jhardware"         %   "jHardware"         % "0.8.4",
 
   // test dependencies
   "org.scalatra"          %%  "scalatra-scalatest"% scalatraV   % Test,
