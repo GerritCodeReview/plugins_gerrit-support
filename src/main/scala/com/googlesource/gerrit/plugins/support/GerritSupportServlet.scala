@@ -18,9 +18,11 @@ package com.googlesource.gerrit.plugins.support
 
 import java.io.{File, FileNotFoundException}
 
+import com.google.gerrit.extensions.annotations.{PluginName => GerritPlugiName}
 import com.google.gerrit.server.CurrentUser
 import com.google.inject.{Inject, Provider, Singleton}
-import com.googlesource.gerrit.plugins.support.CollectServerDataCapability._
+import com.googlesource.gerrit.plugins.support.GerritFacade._
+import com.googlesource.gerrit.plugins.support.latest.CollectServerDataCapability._
 import eu.medsea.mimeutil.detector.ExtensionMimeDetector
 import org.scalatra._
 import org.scalatra.util.Mimes
@@ -29,13 +31,16 @@ import scala.collection.JavaConversions._
 import scala.util.{Failure, Success}
 
 @Singleton
-class GerritSupportServlet @Inject() (val processor: RequestProcessor,
-                                      bundleFactory: SupportBundleFile,
-                                      mimeDetector: ExtensionMimeDetector,
-                                      currentUserProvider: Provider[CurrentUser])
-    extends ScalatraServlet with Mimes {
+class GerritSupportServlet @Inject()(val processor: RequestProcessor,
+                                     bundleFactory: SupportBundleFile,
+                                     mimeDetector: ExtensionMimeDetector,
+                                     currentUserProvider: Provider[CurrentUser],
+                                     @GerritPlugiName gerritPluginName: String)
+  extends ScalatraServlet with Mimes {
 
-  post("/") (requireAdministrateServerPermissions {
+  implicit val pluginName = new PluginName(gerritPluginName)
+
+  post("/")(requireAdministrateServerPermissions {
     processor.processRequest(request.body) match {
       case Success(zipped) =>
         Created("OK", Map(
@@ -45,7 +50,7 @@ class GerritSupportServlet @Inject() (val processor: RequestProcessor,
     }
   })
 
-  get("/:filename") (requireAdministrateServerPermissions {
+  get("/:filename")(requireAdministrateServerPermissions {
     val bundleFilename = params.getOrElse("filename", halt(BadRequest("Missing or invalid bundle name")))
 
     bundleFactory(bundleFilename) match {
@@ -60,7 +65,8 @@ class GerritSupportServlet @Inject() (val processor: RequestProcessor,
   })
 
   private def requireAdministrateServerPermissions(block: => ActionResult) = {
-    currentUserProvider.get match {
+    val currentUser = currentUserProvider.get
+    currentUser match {
       case user if user.isIdentifiedUser && user.getCapabilities.canDo(COLLECT_SERVER_DATA) => block
       case _ => Forbidden("NOT ALLOWED to collect server data")
     }
