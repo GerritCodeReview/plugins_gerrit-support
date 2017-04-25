@@ -6,6 +6,8 @@ version := "1.0-SNAPSHOT"
 
 scalaVersion := "2.11.8"
 
+val gerritVersion = "2.15-SNAPSHOT"
+
 val scalatraV = "2.4.+"
 
 resolvers += Resolver.mavenLocal
@@ -13,7 +15,7 @@ resolvers += Resolver.mavenLocal
 libraryDependencies ++= Seq(
   // provided by gerrit
   "com.google.inject"     %   "guice"             % "3.0"       % Provided,
-  "com.google.gerrit"     %   "gerrit-plugin-api" % "2.11"      % Provided,
+  "com.google.gerrit"     %   "gerrit-plugin-api" % gerritVersion % Provided,
   "com.google.code.gson"  %   "gson"              % "2.7"       % Provided,
   "joda-time"             %   "joda-time"         % "2.9.4"     % Provided,
 
@@ -36,6 +38,7 @@ packageOptions in (Compile, packageBin) +=  {
   Package.ManifestAttributes(
     "Gerrit-ApiType" -> "plugin",
     "Gerrit-PluginName" -> pluginName,
+    "Gerrit-Module" -> "com.googlesource.gerrit.plugins.support.Module",
     "Gerrit-HttpModule" -> "com.googlesource.gerrit.plugins.support.HttpModule"
   )
 }

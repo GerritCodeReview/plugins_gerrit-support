@@ -7,7 +7,7 @@ collect/1 - Prepare a support .zip file
 
 SYNOPSIS
 --------
->     POST /plugins/gerrit-support/collect
+>     POST /a/plugins/gerrit-support/collect
 
 DESCRIPTION
 -----------
@@ -20,6 +20,8 @@ collected and archived in the .zip file.
 - cpuInfo - JSON Object with all the CPU information collected by [jHardware](https://github.com/profesorfalken/jHardware)
 - memInfo - JSON Object with all the Memory information collected by [jHardware](https://github.com/profesorfalken/jHardware)
 
+NOTE: API must be authenticated with the credentials of a user with the 'Collect Server Data' capability.
+
 EXAMPLES
 --------
 
@@ -27,7 +29,7 @@ Ask the server to prepare zip file for version, cpuinfo and meminfo
 
 >     curl -v -H "Content-Type: application/json" \
 >        -d '{"gerritVersion": true,"cpuInfo": true, "memInfo": true }' \
->        http://host:port/plugins/gerrit-support/collect
+>        http://host:port/a/plugins/gerrit-support/collect
 
 ```
 < HTTP/1.1 201 Created
@@ -37,7 +39,9 @@ Ask the server to prepare zip file for version, cpuinfo and meminfo
 < Content-Length: 2
 
 ```
-NOTE: Location header gives the name of the prepared file created on Gerrit server.
+NOTE: Location header gives the name of the prepared file created on Gerrit server. API must be authenticated with
+the credentials of a user with the 'Collect Server Data' capability.
+
 
 NAME
 ----
@@ -45,7 +49,7 @@ collect/2 - Download a support file
 
 SYNOPSIS
 --------
->     GET /plugins/gerrit-support/collect/<zip file name>
+>     GET /a/plugins/gerrit-support/collect/<zip file name>
 
 DESCRIPTION
 -----------
@@ -56,6 +60,6 @@ EXAMPLES
 
 Download the .zip support file
 
->     curl http://host:port/plugins/gerrit-support/collect/20170405-005334-collect-b6d2bc6a-7f01-4b93-9f74-ad28b4a68e67.zip \
+>     curl http://host:port/a/plugins/gerrit-support/collect/20170405-005334-collect-b6d2bc6a-7f01-4b93-9f74-ad28b4a68e67.zip \
 >          -o received.zip
 

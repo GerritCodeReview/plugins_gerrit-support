@@ -18,9 +18,9 @@ package com.googlesource.gerrit.plugins.support
 
 import java.io.{File, FileNotFoundException}
 
-import com.google.gerrit.extensions.annotations._
 import com.google.gerrit.server.CurrentUser
 import com.google.inject.{Inject, Provider, Singleton}
+import com.googlesource.gerrit.plugins.support.CollectServerDataCapability._
 import eu.medsea.mimeutil.detector.ExtensionMimeDetector
 import org.scalatra._
 import org.scalatra.util.Mimes
@@ -61,8 +61,8 @@ class GerritSupportServlet @Inject() (val processor: RequestProcessor,
 
   private def requireAdministrateServerPermissions(block: => ActionResult) = {
     currentUserProvider.get match {
-      case user if user.isIdentifiedUser && user.getCapabilities.canAdministrateServer => block
-      case _ => Forbidden("ACCESS DENIED TO NON-ADMINS")
+      case user if user.isIdentifiedUser && user.getCapabilities.canDo(COLLECT_SERVER_DATA) => block
+      case _ => Forbidden("NOT ALLOWED to collect server data")
     }
   }
 
