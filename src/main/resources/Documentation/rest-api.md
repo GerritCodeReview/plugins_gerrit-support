@@ -7,7 +7,9 @@ collect/1 - Prepare a support .zip file
 
 SYNOPSIS
 --------
->     POST /a/plugins/gerrit-support/collect
+```
+POST /a/plugins/gerrit-support/collect
+```
 
 DESCRIPTION
 -----------
@@ -28,11 +30,11 @@ EXAMPLES
 
 Ask the server to prepare zip file for version, cpuinfo and meminfo
 
->     curl -v -H "Content-Type: application/json" \
->        -d '{"gerritVersion": true,"cpuInfo": true, "memInfo": true }' \
->        http://host:port/a/plugins/gerrit-support/collect
-
 ```
+curl -v -H "Content-Type: application/json" \
+   -d '{"gerritVersion": true,"cpuInfo": true, "memInfo": true }' \
+    http://host:port/a/plugins/gerrit-support/collect
+
 < HTTP/1.1 201 Created
 < Date: Tue, 04 Apr 2017 22:53:33 GMT
 < Content-Type: text/plain; charset=UTF-8
@@ -51,7 +53,9 @@ collect/2 - Download a support file
 
 SYNOPSIS
 --------
->     GET /a/plugins/gerrit-support/collect/<zip file name>
+```
+GET /a/plugins/gerrit-support/collect/<zip file name>
+```
 
 DESCRIPTION
 -----------
@@ -62,6 +66,8 @@ EXAMPLES
 
 Download the .zip support file
 
->     curl http://host:port/a/plugins/gerrit-support/collect/20170405-005334-collect-b6d2bc6a-7f01-4b93-9f74-ad28b4a68e67.zip \
->          -o received.zip
+```
+     curl http://host:port/a/plugins/gerrit-support/collect/20170405-005334-collect-b6d2bc6a-7f01-4b93-9f74-ad28b4a68e67.zip \
+          -o received.zip
+```
 
