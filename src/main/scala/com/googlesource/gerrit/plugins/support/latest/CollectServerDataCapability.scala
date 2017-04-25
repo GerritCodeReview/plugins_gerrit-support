@@ -14,13 +14,9 @@
  * limitations under the License.
  */
 
-package com.googlesource.gerrit.plugins.support
+package com.googlesource.gerrit.plugins.support.latest
 
-import com.google.gerrit.extensions.api.access.PluginPermission
 import com.google.gerrit.extensions.config.CapabilityDefinition
-import com.google.gerrit.server.account.CapabilityControl
-
-import scala.util.Try
 
 class CollectServerDataCapability extends CapabilityDefinition {
   override def getDescription: String = "Collect Server Data"
@@ -28,21 +24,6 @@ class CollectServerDataCapability extends CapabilityDefinition {
 
 object CollectServerDataCapability {
   val COLLECT_SERVER_DATA = "collectServerData"
-
-  val pluginName = "gerrit-support"
-
-  implicit class PimpedCapabilityControl(val capabilityControl: CapabilityControl) extends AnyVal {
-
-    def legacyCanPerform(operation: String): Try[Boolean] = Try {
-      val canPerform = capabilityControl.getClass.getMethod("canPerform", classOf[String])
-      canPerform.invoke(capabilityControl, operation).asInstanceOf[Boolean]
-    }
-
-    implicit def stringToGlobalOrPluginPermissions(operation: String) = new PluginPermission(pluginName, operation)
-
-    def canDo(operation: String): Boolean =
-      legacyCanPerform(operation).getOrElse {
-        capabilityControl.doCanForDefaultPermissionBackend(operation)
-      }
-  }
 }
+
+

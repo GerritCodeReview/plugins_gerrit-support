@@ -16,15 +16,6 @@
 
 package com.googlesource.gerrit.plugins.support
 
-import com.google.gerrit.extensions.annotations.Exports
-import com.google.gerrit.extensions.config.CapabilityDefinition
-import com.google.inject.AbstractModule
-import com.googlesource.gerrit.plugins.support.latest.CollectServerDataCapability
-import com.googlesource.gerrit.plugins.support.latest.CollectServerDataCapability.COLLECT_SERVER_DATA
-
-class Module extends AbstractModule {
-  override def configure() {
-    bind(classOf[CapabilityDefinition]).annotatedWith(Exports.named(COLLECT_SERVER_DATA))
-      .to(classOf[CollectServerDataCapability])
-  }
+object GerritSupportPlugin {
+  val PLUGIN_NAME = "gerrit-support"
 }

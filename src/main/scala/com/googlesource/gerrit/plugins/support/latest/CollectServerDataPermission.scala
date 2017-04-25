@@ -14,17 +14,10 @@
  * limitations under the License.
  */
 
-package com.googlesource.gerrit.plugins.support
+package com.googlesource.gerrit.plugins.support.latest
 
-import com.google.gerrit.extensions.annotations.Exports
-import com.google.gerrit.extensions.config.CapabilityDefinition
-import com.google.inject.AbstractModule
-import com.googlesource.gerrit.plugins.support.latest.CollectServerDataCapability
-import com.googlesource.gerrit.plugins.support.latest.CollectServerDataCapability.COLLECT_SERVER_DATA
+import com.google.gerrit.extensions.api.access.PluginPermission
 
-class Module extends AbstractModule {
-  override def configure() {
-    bind(classOf[CapabilityDefinition]).annotatedWith(Exports.named(COLLECT_SERVER_DATA))
-      .to(classOf[CollectServerDataCapability])
-  }
-}
+class CollectServerDataPermission(pluginName: String) extends
+  PluginPermission(pluginName, CollectServerDataCapability.COLLECT_SERVER_DATA)
+
