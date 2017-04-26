@@ -55,7 +55,7 @@ class GerritSupportTest extends FlatSpec with Matchers with JsonMatcher {
   }
 
   "Bundle builder" should "create an output zip file" in {
-    val zipFile = new SupportBundleBuilder(tmpPath.toPath, new Gson).build
+    val zipFile = new SupportBundleBuilder(tmpPath.toPath, new Gson).build(Seq())
 
     zipFile should (be a 'file
       and endWithExtension("zip"))
@@ -63,8 +63,7 @@ class GerritSupportTest extends FlatSpec with Matchers with JsonMatcher {
 
   it should "create a one entry in the output zip file" in {
     val file = new SupportBundleBuilder(tmpPath.toPath, new Gson)
-      .write(CommandResult("foo", new JsonPrimitive("bar")))
-      .build
+      .build(Seq(CommandResult("foo", new JsonPrimitive("bar"))))
 
     val zipEntries = new ZipFile(file).entries.asScala
     zipEntries should have size (1)
@@ -72,8 +71,7 @@ class GerritSupportTest extends FlatSpec with Matchers with JsonMatcher {
 
   it should "add the Json primitive into the zip entry" in {
     val file = new SupportBundleBuilder(tmpPath.toPath, new Gson)
-      .write(CommandResult("entry-name", new JsonPrimitive("foo")))
-      .build
+      .build(Seq(CommandResult("entry-name", new JsonPrimitive("foo"))))
 
     val zipEntries = new ZipFile(file).entries.asScala.toSeq
     zipEntries.map(_.getName) should contain("entry-name")

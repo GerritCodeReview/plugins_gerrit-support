@@ -51,24 +51,22 @@ class SupportBundleBuilder @Inject()(@PluginDataPath val directory: Path, gson: 
 
   import SupportBundle._
 
-  lazy val timestamp = DateTimeFormat.forPattern("yyyyMMdd-HHmmss").print(new DateTime)
+  private def timestamp = DateTimeFormat.forPattern("yyyyMMdd-HHmmss").print(new DateTime)
 
-  lazy val filename = BundleName(timestamp, UUID.randomUUID)
+  private def newBundleName = BundleName(timestamp, UUID.randomUUID)
 
-  lazy val file = directory.resolve(filename).toFile
-
-  lazy val zip = new ZipOutputStream(new FileOutputStream(file))
+  private def newFile = directory.resolve(newBundleName).toFile
 
   val UTF8 = Charset.forName("UTF-8")
 
-  def write(file: CommandResult): SupportBundleBuilder = {
-    zip.putNextEntry(new ZipEntry(file.entryName))
-    zip.write(gson.toJson(file.content).getBytes(UTF8))
-    this
-  }
-
-  def build() = {
-    zip.close
+  def build(results: TraversableOnce[CommandResult]): File = {
+    val file = newFile
+    val zipBundle =  new ZipOutputStream(new FileOutputStream(file))
+    results.foreach { result =>
+      zipBundle.putNextEntry(new ZipEntry(result.entryName))
+      zipBundle.write(gson.toJson(result.content).getBytes(UTF8))
+    }
+    zipBundle.close()
     file
   }
 }

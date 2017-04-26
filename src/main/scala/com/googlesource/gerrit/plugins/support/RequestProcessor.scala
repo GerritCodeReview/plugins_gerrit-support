@@ -14,6 +14,8 @@
 
 package com.googlesource.gerrit.plugins.support
 
+import java.io.File
+
 import com.google.gson.{Gson, JsonElement, JsonObject}
 import com.google.inject.{Inject, Injector, Singleton}
 
@@ -25,22 +27,16 @@ class RequestProcessor @Inject()(val zipped: SupportBundleBuilder,
                                  gson: Gson,
                                  commandFactory: GerritSupportCommandFactory) {
 
-  def processRequest(body: String): Try[SupportBundleBuilder] = {
+  def processRequest(body: String): Try[File] = {
     Try {
       val requestJson = gson.fromJson(body, classOf[JsonElement]).getAsJsonObject
-
-      try {
+      zipped.build {
         requestJson
           .entrySet().asScala
           .filter(_.getValue.getAsBoolean)
           .map(_.getKey)
           .map(commandFactory.apply)
           .map(_.execute)
-          .foreach(zipped.write)
-        zipped
-
-      } finally {
-        zipped.build
       }
     }
   }

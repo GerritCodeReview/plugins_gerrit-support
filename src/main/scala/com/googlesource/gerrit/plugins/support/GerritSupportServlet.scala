@@ -46,7 +46,7 @@ class GerritSupportServlet @Inject()(val processor: RequestProcessor,
     processor.processRequest(request.body) match {
       case Success(zipped) =>
         Created("OK", Map(
-          "Location" -> s"${request.getRequestURI}/${zipped.filename}"))
+          "Location" -> s"${request.getRequestURI}/${zipped.getName}"))
       case Failure(e) => {
         log.error(s"Error serving POST ${request.getRequestURI}", e)
         InternalServerError(reason = e.getLocalizedMessage)
