@@ -29,6 +29,7 @@ import org.scalatra.util.Mimes
 
 import scala.collection.JavaConversions._
 import scala.util.{Failure, Success}
+import org.slf4j.LoggerFactory
 
 @Singleton
 class GerritSupportServlet @Inject()(val processor: RequestProcessor,
@@ -37,6 +38,7 @@ class GerritSupportServlet @Inject()(val processor: RequestProcessor,
                                      currentUserProvider: Provider[CurrentUser],
                                      @GerritPlugiName gerritPluginName: String)
   extends ScalatraServlet with Mimes {
+  val log = LoggerFactory.getLogger(classOf[GerritSupportServlet])
 
   implicit val pluginName = new PluginName(gerritPluginName)
 
@@ -45,8 +47,10 @@ class GerritSupportServlet @Inject()(val processor: RequestProcessor,
       case Success(zipped) =>
         Created("OK", Map(
           "Location" -> s"${request.getRequestURI}/${zipped.filename}"))
-      case Failure(e) =>
+      case Failure(e) => {
+        log.error(s"Error serving POST ${request.getRequestURI}", e)
         InternalServerError(reason = e.getLocalizedMessage)
+      }
     }
   })
 
@@ -61,6 +65,10 @@ class GerritSupportServlet @Inject()(val processor: RequestProcessor,
 
       case Failure(e: IllegalArgumentException) => BadRequest("Invalid bundle name")
 
+      case Failure(t: Throwable) => {
+        log.error(s"Error serving GET ${request.getRequestURI}", t)
+        InternalServerError(reason = t.getLocalizedMessage)
+      }
     }
   })
 
