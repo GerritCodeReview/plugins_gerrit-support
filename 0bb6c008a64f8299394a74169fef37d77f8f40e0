@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e811e37_b6ecd368",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/CpuInfoCommand.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-05-05T08:48:35Z",
+      "side": 1,
+      "message": "Missing copyright \u0026 license",
+      "revId": "0bb6c008a64f8299394a74169fef37d77f8f40e0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fac3904_d9f923fc",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/CpuInfoCommand.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-05-05T08:48:35Z",
+      "side": 1,
+      "message": "I was wondering if we could pull out this Try () pattern up to the caller so that we don\u0027t have to copy \u0026 paste it multiple times.",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 11
+      },
+      "revId": "0bb6c008a64f8299394a74169fef37d77f8f40e0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "34b921d2_d55e6da6",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/GerritVersionCommand.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-05-05T08:48:35Z",
+      "side": 1,
+      "message": "Missing copyright \u0026 license",
+      "revId": "0bb6c008a64f8299394a74169fef37d77f8f40e0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a588ffdb_e0776db3",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/MemInfoCommand.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-05-05T08:48:35Z",
+      "side": 1,
+      "message": "Missing copyright \u0026 license",
+      "revId": "0bb6c008a64f8299394a74169fef37d77f8f40e0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
