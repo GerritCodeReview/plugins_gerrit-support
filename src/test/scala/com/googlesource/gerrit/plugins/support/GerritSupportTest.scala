@@ -17,11 +17,14 @@
 package com.googlesource.gerrit.plugins.support
 
 import java.io.File
+import java.nio.file.Paths
 import java.util.zip.ZipFile
 
 import com.google.gson.{Gson, JsonPrimitive}
 import com.googlesource.gerrit.plugins.support.FileMatchers._
-import com.googlesource.gerrit.plugins.support.commands.{CpuInfoCommand, GerritVersionCommand, MemInfoCommand}
+import com.googlesource.gerrit.plugins.support.commands.{CpuInfoCommand, DiskInfoCommand, GerritVersionCommand, MemInfoCommand}
+import org.mockito.Matchers.any
+import org.mockito.Mockito
 import org.scalatest.{FlatSpec, Matchers}
 
 import scala.collection.JavaConverters._
@@ -53,6 +56,16 @@ class GerritSupportTest extends FlatSpec with Matchers with JsonMatcher {
 
     memInfo should not be null
     memInfo.getAsJsonObject should haveValidFields
+  }
+
+  "disk-info command" should "return a json object with some fields" in {
+    val wrapper = Mockito.mock(classOf[SitePathsWrapper])
+    Mockito.when(wrapper.getAsPath(any[String])).thenReturn(Paths.get("/tmp"))
+
+    val diskInfo = new DiskInfoCommand(wrapper).execute.content
+
+    diskInfo should not be null
+    diskInfo.getAsJsonObject should haveValidFields
   }
 
   "Bundle builder" should "create an output zip file" in {
