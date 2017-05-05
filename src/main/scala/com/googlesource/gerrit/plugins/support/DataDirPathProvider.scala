@@ -13,21 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.googlesource.gerrit.plugins.support
 
+import java.io.File
 import java.nio.file.Path
 
-import com.google.inject.Scopes
-import com.google.inject.servlet.ServletModule
-import com.googlesource.gerrit.plugins.support.annotations.{DataPath, PluginDataPath}
+import com.google.gerrit.server.config.SitePaths
+import com.google.inject.{Inject, Injector, Key, Provider}
 
-class HttpModule extends ServletModule {
+import scala.util.Try
 
-  override def configureServlets() {
-    bind(classOf[Path]).annotatedWith(classOf[PluginDataPath])
-      .toProvider(classOf[PluginDataPathProvider])
-      .in(Scopes.SINGLETON)
-
-    serve("/collect*").`with`(classOf[GerritSupportServlet])
-  }
+class DataDirPathProvider @Inject()(val injector: Injector) extends Provider[Path] {
+  override def get(): Path = Try {
+    injector.getInstance(Key.get(classOf[SitePaths])).data_dir
+  }.orElse {
+    Try {
+      injector.getInstance(Key.get(classOf[SitePaths])).data_dir.asInstanceOf[File]
+    }.map(_.toPath)
+  }.get
 }
