@@ -21,6 +21,7 @@ import java.util.zip.ZipFile
 
 import com.google.gson.{Gson, JsonPrimitive}
 import com.googlesource.gerrit.plugins.support.FileMatchers._
+import com.googlesource.gerrit.plugins.support.commands._
 import org.scalatest.{FlatSpec, Matchers}
 
 import scala.collection.JavaConverters._

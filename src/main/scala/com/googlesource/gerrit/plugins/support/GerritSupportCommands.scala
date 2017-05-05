@@ -16,53 +16,47 @@
 
 package com.googlesource.gerrit.plugins.support
 
-import com.google.gerrit.common.Version
-import com.google.gson.{Gson, JsonElement, JsonObject, JsonPrimitive}
+import com.google.gson.{Gson, JsonElement, JsonObject}
 import com.google.inject._
-import org.jutils.jhardware.HardwareInfo.{getMemoryInfo, getProcessorInfo}
+import org.slf4j.LoggerFactory
 
 import scala.util.Try
 
 case class CommandResult(entryName: String, content: JsonElement)
 
-trait GerritSupportCommand {
-  def execute: CommandResult
+abstract class GerritSupportCommand {
+  val log = LoggerFactory.getLogger(classOf[GerritSupportCommand])
+  implicit val gson = new Gson
+  val name = camelToUnderscores(this.getClass.getSimpleName.stripSuffix("Command"))
+    .stripPrefix("_")
+
+  def getResult: Any
+
+  def execute = {
+    CommandResult(s"${name}.json",
+      gson.toJsonTree(
+        Try {
+          getResult
+        } getOrElse {
+          val error = s"${name} not available on ${System.getProperty("os.name")}"
+          log.error(error);
+          ErrorInfo("error" -> error)
+        }))
+  }
+
+  private def camelToUnderscores(name: String) = "[A-Z\\d]".r.replaceAllIn(name, { m =>
+    "_" + m.group(0).toLowerCase()
+  })
 }
 
 @Singleton
 class GerritSupportCommandFactory @Inject()(val injector: Injector) {
+
   def apply(name: String): GerritSupportCommand =
     injector.getInstance(
-      Class.forName(s"com.googlesource.gerrit.plugins.support.${name.capitalize}Command")
+      Class.forName(s"com.googlesource.gerrit.plugins.support.commands.${name.capitalize}Command")
         .asInstanceOf[Class[_ <: GerritSupportCommand]])
-}
 
-class GerritVersionCommand extends GerritSupportCommand {
-  def execute = CommandResult("version.json", new JsonPrimitive(Version.getVersion))
-}
-
-class CpuInfoCommand extends GerritSupportCommand {
-  implicit val gson = new Gson
-
-  def execute = CommandResult("cpu-info.json",
-    gson.toJsonTree(
-      Try {
-        getProcessorInfo
-      } getOrElse {
-        ErrorInfo("error" -> s"CPU info not available on ${System.getProperty("os.name")}")
-      }))
-}
-
-class MemInfoCommand extends GerritSupportCommand {
-  implicit val gson = new Gson
-
-  def execute = CommandResult("mem-info.json",
-    gson.toJsonTree(
-      Try {
-        getMemoryInfo
-      } getOrElse {
-        ErrorInfo("error" -> s"Memory info not available on ${System.getProperty("os.name")}")
-      }))
 }
 
 object ErrorInfo {
