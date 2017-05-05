@@ -21,6 +21,16 @@ collected and archived in the .zip file.
 - gerritVersion - JSON String with the version of running Gerrit server
 - cpuInfo - JSON Object with all the CPU information collected by [jHardware](https://github.com/profesorfalken/jHardware)
 - memInfo - JSON Object with all the Memory information collected by [jHardware](https://github.com/profesorfalken/jHardware)
+- diskInfo - JSON Object describing the disk information. Here a possible output:
+```
+{
+    "diskFree": 106969321472,
+    "diskTotal": 235089907712,
+    "diskUsable": 95003811840,
+    "path": "/home/pakkio/g2.14-stable/data"
+}
+
+```
 
 NOTE: API must be authenticated with the credentials of a user with the
 'Collect Server Data' capability.
