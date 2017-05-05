@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "616fc02d_9276fd8d",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/CpuInfoCommand.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1023193
+      },
+      "writtenOn": "2017-05-05T09:49:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e811e37_b6ecd368",
+      "revId": "0bb6c008a64f8299394a74169fef37d77f8f40e0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fac3904_d9f923fc",
         "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/CpuInfoCommand.scala",
         "patchSetId": 1
@@ -30,6 +48,30 @@
       "writtenOn": "2017-05-05T08:48:35Z",
       "side": 1,
       "message": "I was wondering if we could pull out this Try () pattern up to the caller so that we don\u0027t have to copy \u0026 paste it multiple times.",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 11
+      },
+      "revId": "0bb6c008a64f8299394a74169fef37d77f8f40e0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b7fee06a_9248a6bb",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/CpuInfoCommand.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1023193
+      },
+      "writtenOn": "2017-05-05T09:49:45Z",
+      "side": 1,
+      "message": "Yes! refactored so that as much as possible is in the abstract class. Can you verify it is working on mac?",
+      "parentUuid": "5fac3904_d9f923fc",
       "range": {
         "startLine": 14,
         "startChar": 6,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "a70bdbf9_5dfe27d9",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/GerritVersionCommand.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1023193
+      },
+      "writtenOn": "2017-05-05T09:49:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34b921d2_d55e6da6",
+      "revId": "0bb6c008a64f8299394a74169fef37d77f8f40e0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a588ffdb_e0776db3",
         "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/MemInfoCommand.scala",
         "patchSetId": 1
@@ -70,6 +130,24 @@
       "writtenOn": "2017-05-05T08:48:35Z",
       "side": 1,
       "message": "Missing copyright \u0026 license",
+      "revId": "0bb6c008a64f8299394a74169fef37d77f8f40e0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2af50aa1_c18f675e",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/MemInfoCommand.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1023193
+      },
+      "writtenOn": "2017-05-05T09:49:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a588ffdb_e0776db3",
       "revId": "0bb6c008a64f8299394a74169fef37d77f8f40e0",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
