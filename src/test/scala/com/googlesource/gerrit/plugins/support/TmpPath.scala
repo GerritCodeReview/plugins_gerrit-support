@@ -14,12 +14,31 @@
  * limitations under the License.
  */
 
-package com.googlesource.gerrit.plugins.support.commands
+package com.googlesource.gerrit.plugins.support
 
-import com.google.gerrit.common.Version
-import com.googlesource.gerrit.plugins.support.{CommandResult, GerritSupportCommand}
+import java.io.{File, PrintWriter}
 
-class GerritVersionCommand extends GerritSupportCommand {
-  // simply returns a file with the version in it
-  override def getResults = CommandResult(name, Version.getVersion)
+trait TmpPath {
+  val tmpPath = File.createTempFile(classOf[GerritSupportTest].getName, "").getParentFile
+
+  def millis = System.currentTimeMillis.toString
+
+  def tmpFile = {
+    val file = File.createTempFile("file.txt", millis, tmpPath)
+    file.deleteOnExit
+    file
+  }
+
+  def tmpConfigFile = {
+    val file = File.createTempFile(s"file.$millis", ".config", tmpPath)
+    file.deleteOnExit()
+    new PrintWriter(file) {
+      try {
+        write("something")
+      } finally {
+        close
+      }
+    }
+    file
+  }
 }

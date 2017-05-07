@@ -22,7 +22,7 @@ import java.nio.file.Path
 import java.util.UUID
 import java.util.zip.{ZipEntry, ZipOutputStream}
 
-import com.google.gson.Gson
+import com.google.gson.{Gson, JsonElement}
 import com.google.inject.Inject
 import com.googlesource.gerrit.plugins.support.annotations.PluginDataPath
 import org.joda.time.DateTime
@@ -61,10 +61,14 @@ class SupportBundleBuilder @Inject()(@PluginDataPath val directory: Path, gson: 
 
   def build(results: TraversableOnce[CommandResult]): File = {
     val file = newFile
-    val zipBundle =  new ZipOutputStream(new FileOutputStream(file))
+    val zipBundle = new ZipOutputStream(new FileOutputStream(file))
     results.foreach { result =>
       zipBundle.putNextEntry(new ZipEntry(result.entryName))
-      zipBundle.write(gson.toJson(result.content).getBytes(UTF8))
+      var retString = result.content match {
+        case JsonResult(x) => gson.toJson(x)
+        case TextResult(x) => x
+      }
+      zipBundle.write(retString.getBytes(UTF8))
     }
     zipBundle.close()
     file
