@@ -36,7 +36,7 @@ class RequestProcessor @Inject()(val zipped: SupportBundleBuilder,
           .filter(_.getValue.getAsBoolean)
           .map(_.getKey)
           .map(commandFactory.apply)
-          .map(_.execute)
+          .flatMap(_.execute)
       }
     }
   }

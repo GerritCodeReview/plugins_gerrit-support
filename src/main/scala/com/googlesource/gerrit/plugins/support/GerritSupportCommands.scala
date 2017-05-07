@@ -21,24 +21,34 @@ import com.google.inject._
 
 import scala.util.Try
 
-case class CommandResult(entryName: String, content: JsonElement)
+case class CommandResult(entryName: String, content: ResultType)
+
+trait ResultType
+case class JsonResult(x:JsonElement) extends ResultType
+case class TextResult(x:String) extends ResultType
+
+
 
 abstract class GerritSupportCommand {
-
+  implicit def convertAny2JsonElement(x:Any):JsonResult = JsonResult(gson.toJsonTree(x))
+  implicit def convertString2TextResult(x:String) = TextResult(x)
+  implicit def convertCommandResult2Seq(x:CommandResult) = Seq(x)
   implicit val gson = new Gson
+
   val name = camelToUnderscores(this.getClass.getSimpleName.stripSuffix("Command"))
     .stripPrefix("_")
 
-  def getResult: Any
+  val nameJson = s"$name.json"
 
-  def execute = {
-    CommandResult(s"${name}.json",
-      gson.toJsonTree(
+  def getResults: Seq[CommandResult]
+
+  def execute: Seq[CommandResult] = {
         Try {
-          getResult
+          getResults
         } getOrElse {
-          ErrorInfo("error" -> s"${name} not available on ${System.getProperty("os.name")}")
-        }))
+          CommandResult(name,
+            ErrorInfo("error" -> s"${name} not available on ${System.getProperty("os.name")}"))
+        }
   }
 
   private def camelToUnderscores(name: String) = "[A-Z\\d]".r.replaceAllIn(name, { m =>
