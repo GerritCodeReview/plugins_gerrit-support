@@ -16,9 +16,9 @@
 
 package com.googlesource.gerrit.plugins.support.commands
 
-import com.googlesource.gerrit.plugins.support.GerritSupportCommand
+import com.googlesource.gerrit.plugins.support.{CommandResult, GerritSupportCommand}
 import org.jutils.jhardware.HardwareInfo.getProcessorInfo
 
 class CpuInfoCommand extends GerritSupportCommand {
-  override def getResult = getProcessorInfo
+  override def getResults = CommandResult(name, getProcessorInfo)
 }

@@ -16,26 +16,35 @@
 
 package com.googlesource.gerrit.plugins.support.commands
 
-import java.nio.file.Files
-
 import com.google.inject.Inject
 import com.googlesource.gerrit.plugins.support.{CommandResult, GerritSupportCommand, SitePathsWrapper}
 
-class DiskInfoCommand @Inject()(val sitePathsFolder: SitePathsWrapper) extends GerritSupportCommand {
+import scala.io.Source
 
-  case class DiskInfo(path: String, diskFree: Long, diskUsable: Long, diskTotal: Long)
+class ConfigInfoCommand @Inject()(val sitePathsWrapper: SitePathsWrapper) extends GerritSupportCommand {
 
   override def getResults = {
-    val dataPath = sitePathsFolder.getAsPath("data_dir")
-    val store = Files.getFileStore(dataPath)
-
-    CommandResult(name,
-      DiskInfo(
-        dataPath.toString,
-        store.getUnallocatedSpace,
-        store.getUsableSpace,
-        store.getTotalSpace))
-
+    try {
+      sitePathsWrapper
+        .getAsPath("etc_dir")
+        .toFile
+        .listFiles
+        .filter(_.isFile)
+        .filter(_.getName.endsWith(".config"))
+        .map(
+          f => {
+            CommandResult(
+              f.getName,
+              Source
+                .fromFile(f)
+                .getLines()
+                .mkString("\n"))
+          }
+        )
+    } catch {
+      case x: Exception => {
+        CommandResult(name, s"Error ${x.getMessage}")
+      }
+    }
   }
-
 }
