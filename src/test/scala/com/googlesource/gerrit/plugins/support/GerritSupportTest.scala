@@ -16,8 +16,11 @@
 
 package com.googlesource.gerrit.plugins.support
 
+import java.io.PrintWriter
 import java.nio.file.Paths
 
+import com.google.gerrit.server.plugins.{ListPlugins, PluginsCollection}
+import com.google.gson.JsonObject
 import com.googlesource.gerrit.plugins.support.commands._
 import org.mockito.Matchers.any
 import org.mockito.Mockito
@@ -55,6 +58,7 @@ class GerritSupportTest extends FlatSpec with Matchers
     diskInfo should not be null
     diskInfo.getAsJsonObject should haveValidFields
   }
+
   "config-info command" should "return some files" in {
     val wrapper = Mockito.mock(classOf[SitePathsWrapper])
     Mockito.when(wrapper.getAsPath(any[String])).thenReturn(tmpPath.toPath)
@@ -66,5 +70,32 @@ class GerritSupportTest extends FlatSpec with Matchers
     content.size should be > 0
   }
 
+  "plugins-info command" should "return some data" in {
+
+    val mockedWrapper = {
+      val mock = Mockito.mock(classOf[SitePathsWrapper])
+      Mockito.when(mock.getAsPath(any[String])).thenReturn(tmpPath.toPath)
+      mock
+    }
+
+    val mockedPluginsCollection = {
+      val mockedListPlugins = {
+        val mock = Mockito.mock(classOf[ListPlugins])
+        Mockito.when(mock.display(any[PrintWriter]))
+          .thenReturn(new JsonObject)
+        mock
+      }
+
+      val mock = Mockito.mock(classOf[PluginsCollection])
+      Mockito.when(mock.list()).thenReturn(mockedListPlugins)
+      mock
+    }
+
+    val commands = new PluginsInfoCommand(
+      mockedWrapper,
+      mockedPluginsCollection).execute
+
+    commands.size should be(3)
+  }
 }
 
