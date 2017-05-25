@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "452009a2_946be227",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/GerritSupportCommands.scala",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-05-25T21:09:23Z",
+      "side": 1,
+      "message": "Shall we log the exception somethere? Log?",
+      "revId": "208bc7d57fd6c821db9fb5214ef18f43b50df09b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "898a5d4e_7c20200e",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/CpuInfoCommand.scala",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-05-25T21:09:23Z",
+      "side": 1,
+      "message": "You are a bit inconsistent across commands: sometimes you import the entire object, other times the specific method.\n\nI would align to importing the Class and then using Class.method to make it more readable.",
+      "range": {
+        "startLine": 20,
+        "startChar": 28,
+        "endLine": 20,
+        "endChar": 57
+      },
+      "revId": "208bc7d57fd6c821db9fb5214ef18f43b50df09b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbf31238_1769a710",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/GerritVersionCommand.scala",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-05-25T21:09:23Z",
+      "side": 1,
+      "message": "This is what I was mentioning in my previous comment.",
+      "range": {
+        "startLine": 23,
+        "startChar": 27,
+        "endLine": 23,
+        "endChar": 45
+      },
+      "revId": "208bc7d57fd6c821db9fb5214ef18f43b50df09b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1df3d2e2_ced38572",
+        "filename": "src/test/scala/com/googlesource/gerrit/plugins/support/GerritSupportTest.scala",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-05-25T21:09:23Z",
+      "side": 1,
+      "message": "just import everything?",
+      "range": {
+        "startLine": 24,
+        "startChar": 56,
+        "endLine": 24,
+        "endChar": 110
+      },
+      "revId": "208bc7d57fd6c821db9fb5214ef18f43b50df09b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
