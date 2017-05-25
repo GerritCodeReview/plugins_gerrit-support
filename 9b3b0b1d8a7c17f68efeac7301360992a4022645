@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c2a6266_88d9bd52",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/FileAttributes.scala",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-05-25T21:38:07Z",
+      "side": 1,
+      "message": "Why generating a TSV format whilst all the other support data is in JSON?",
+      "range": {
+        "startLine": 27,
+        "startChar": 11,
+        "endLine": 27,
+        "endChar": 57
+      },
+      "revId": "9b3b0b1d8a7c17f68efeac7301360992a4022645",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "944179f5_ed42398e",
+        "filename": "src/test/scala/com/googlesource/gerrit/plugins/support/GerritSupportTest.scala",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-05-25T21:38:07Z",
+      "side": 1,
+      "message": "Unneeded change.",
+      "revId": "9b3b0b1d8a7c17f68efeac7301360992a4022645",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35fbe290_7cc1ff5b",
+        "filename": "src/test/scala/com/googlesource/gerrit/plugins/support/GerritSupportTest.scala",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-05-25T21:38:07Z",
+      "side": 1,
+      "message": "You are actually testing that returns three lines, not just \"some data\" isn\u0027t it?",
+      "range": {
+        "startLine": 73,
+        "startChar": 40,
+        "endLine": 73,
+        "endChar": 49
+      },
+      "revId": "9b3b0b1d8a7c17f68efeac7301360992a4022645",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
