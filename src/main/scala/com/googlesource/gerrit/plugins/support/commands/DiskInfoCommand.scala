@@ -25,7 +25,7 @@ class DiskInfoCommand @Inject()(val sitePathsFolder: SitePathsWrapper) extends G
 
   case class DiskInfo(path: String, diskFree: Long, diskUsable: Long, diskTotal: Long)
 
-  def getResult = {
+  override def getResult = {
     val dataPath = sitePathsFolder.getAsPath("data_dir")
     val store = Files.getFileStore(dataPath)
     DiskInfo(dataPath.toString, store.getUnallocatedSpace,
