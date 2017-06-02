@@ -14,12 +14,31 @@
  * limitations under the License.
  */
 
-package com.googlesource.gerrit.plugins.support.commands
+package com.googlesource.gerrit.plugins.support
 
-import com.googlesource.gerrit.plugins.support.{CommandResult, GerritSupportCommand}
-import org.jutils.jhardware.HardwareInfo
+import java.io.{File, PrintWriter}
 
-class CpuInfoCommand extends GerritSupportCommand {
-  override def getResults = CommandResult(nameJson, HardwareInfo
-    .getProcessorInfo)
+trait TmpPath {
+  val tmpPath = File.createTempFile(classOf[GerritSupportTest].getName, "").getParentFile
+
+  def millis = System.currentTimeMillis.toString
+
+  def tmpFile = {
+    val file = File.createTempFile("file.txt", millis, tmpPath)
+    file.deleteOnExit
+    file
+  }
+
+  def tmpConfigFile = {
+    val file = File.createTempFile(s"file.$millis", ".config", tmpPath)
+    file.deleteOnExit()
+    new PrintWriter(file) {
+      try {
+        write("something")
+      } finally {
+        close
+      }
+    }
+    file
+  }
 }
