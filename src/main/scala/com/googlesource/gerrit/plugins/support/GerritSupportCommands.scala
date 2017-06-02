@@ -18,30 +18,64 @@ package com.googlesource.gerrit.plugins.support
 
 import com.google.gson.{Gson, JsonElement, JsonObject}
 import com.google.inject._
+import com.googlesource.gerrit.plugins.support.GerritSupportCommand.{CommandResult, JsonResult, ResultName}
 import org.slf4j.LoggerFactory
 
 import scala.util.Try
 
-case class CommandResult(entryName: String, content: JsonElement)
+object GerritSupportCommand {
+
+  class ResultName(val name: String) extends AnyVal
+
+  implicit def wrapToResultName(name: String): ResultName = new ResultName(name)
+
+  implicit def unwrapResultName(resultName: ResultName): String = resultName.name
+
+  // allows returning a pure Json result or a textual file content
+  case class CommandResult(entryName: ResultName, content: AnyResult)
+
+  trait AnyResult
+
+  case class JsonResult(result: JsonElement)(implicit val gson: Gson) extends AnyResult {
+    override def toString: String = gson.toJson(result)
+  }
+
+  case class TextResult(result: String) extends AnyResult {
+    override def toString: String = result
+  }
+
+  implicit def convertAny2CommandResult(x: Any)(implicit resultName: ResultName, gson: Gson) =
+    x match {
+      case res: AnyResult => CommandResult(resultName, res)
+      case anyRes => CommandResult(resultName, JsonResult(gson.toJsonTree(anyRes)))
+    }
+
+  implicit def convertString2TextResult(x:String) = TextResult(x)
+}
 
 abstract class GerritSupportCommand {
+  import GerritSupportCommand._
+
   val log = LoggerFactory.getLogger(classOf[GerritSupportCommand])
+
   implicit val gson = new Gson
-  val name = camelToUnderscores(this.getClass.getSimpleName.stripSuffix("Command"))
+  implicit val name: ResultName = camelToUnderscores(this.getClass.getSimpleName.stripSuffix("Command"))
     .stripPrefix("_")
 
-  def getResult: Any
+  val nameJson = s"$name.json"
 
-  def execute = {
-    CommandResult(s"${name}.json",
-      gson.toJsonTree(
-        Try {
-          getResult
-        } getOrElse {
-          val error = s"${name} not available on ${System.getProperty("os.name")}"
-          log.error(error);
-          ErrorInfo("error" -> error)
-        }))
+  def getResults: Seq[CommandResult] = Seq(getResult)
+
+  def getResult: CommandResult
+
+  def execute: Seq[CommandResult] = {
+    Try {
+      getResults
+    } getOrElse {
+      val error = s"${name} not available on ${System.getProperty("os.name")}"
+      log.error(error)
+      Seq(ErrorInfo("error" -> error))
+    }
   }
 
   private def camelToUnderscores(name: String) = "[A-Z\\d]".r.replaceAllIn(name, { m =>
@@ -60,11 +94,13 @@ class GerritSupportCommandFactory @Inject()(val injector: Injector) {
 }
 
 object ErrorInfo {
-  def apply[T](attributes: (String, T)*)(implicit gson: Gson): JsonObject =
-    attributes.foldLeft(new JsonObject) {
-      (json, pair) => {
-        json.add(pair._1, gson.toJsonTree(pair._2))
-        json
-      }
-    }
+  def apply[T](attributes: (String, T)*)(implicit gson: Gson, resultName: ResultName): CommandResult =
+    CommandResult(resultName,
+      JsonResult(
+        attributes.foldLeft(new JsonObject) {
+          (json, pair) => {
+            json.add(pair._1, gson.toJsonTree(pair._2))
+            json
+          }
+        }))
 }

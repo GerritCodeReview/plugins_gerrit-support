@@ -24,6 +24,7 @@ import java.util.zip.{ZipEntry, ZipOutputStream}
 
 import com.google.gson.Gson
 import com.google.inject.Inject
+import com.googlesource.gerrit.plugins.support.GerritSupportCommand.CommandResult
 import com.googlesource.gerrit.plugins.support.annotations.PluginDataPath
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
@@ -64,7 +65,7 @@ class SupportBundleBuilder @Inject()(@PluginDataPath val directory: Path, gson: 
     val zipBundle =  new ZipOutputStream(new FileOutputStream(file))
     results.foreach { result =>
       zipBundle.putNextEntry(new ZipEntry(result.entryName))
-      zipBundle.write(gson.toJson(result.content).getBytes(UTF8))
+      zipBundle.write(result.content.toString.getBytes(UTF8))
     }
     zipBundle.close()
     file
