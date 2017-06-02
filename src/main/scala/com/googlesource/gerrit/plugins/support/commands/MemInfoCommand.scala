@@ -16,9 +16,9 @@
 
 package com.googlesource.gerrit.plugins.support.commands
 
-import com.googlesource.gerrit.plugins.support.GerritSupportCommand
+import com.googlesource.gerrit.plugins.support.{CommandResult, GerritSupportCommand}
 import org.jutils.jhardware.HardwareInfo
 
 class MemInfoCommand extends GerritSupportCommand {
-  override def getResult = HardwareInfo.getMemoryInfo
+  override def getResults = CommandResult(nameJson, HardwareInfo.getMemoryInfo)
 }
