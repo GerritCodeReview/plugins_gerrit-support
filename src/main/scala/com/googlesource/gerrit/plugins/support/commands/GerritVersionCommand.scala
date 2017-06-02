@@ -17,8 +17,9 @@
 package com.googlesource.gerrit.plugins.support.commands
 
 import com.google.gerrit.common.Version
-import com.googlesource.gerrit.plugins.support.GerritSupportCommand
+import com.googlesource.gerrit.plugins.support.{CommandResult, GerritSupportCommand, TextResult}
 
 class GerritVersionCommand extends GerritSupportCommand {
-  override def getResult = Version.getVersion
+  // simply returns a file with the version in it
+  override def getResults = CommandResult(name, TextResult(Version.getVersion))
 }

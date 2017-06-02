@@ -22,26 +22,38 @@ import org.slf4j.LoggerFactory
 
 import scala.util.Try
 
-case class CommandResult(entryName: String, content: JsonElement)
+// allows returning a pure Json result or a textual file content
+case class CommandResult(entryName: String, content: ResultType)
+
+trait ResultType
+case class JsonResult(x:JsonElement) extends ResultType
+case class TextResult(x:String) extends ResultType
 
 abstract class GerritSupportCommand {
   val log = LoggerFactory.getLogger(classOf[GerritSupportCommand])
+
+  // simplifies the return from commands with automatic wrapping in
+  // Json/TextResult/Seq
+  implicit def convertAny2JsonElement(x:Any):JsonResult = JsonResult(gson.toJsonTree(x))
+  implicit def convertString2TextResult(x:String) = TextResult(x)
+  implicit def convertCommandResult2Seq(x:CommandResult) = Seq(x)
+
   implicit val gson = new Gson
   val name = camelToUnderscores(this.getClass.getSimpleName.stripSuffix("Command"))
     .stripPrefix("_")
 
-  def getResult: Any
+  val nameJson = s"$name.json"
 
-  def execute = {
-    CommandResult(s"${name}.json",
-      gson.toJsonTree(
-        Try {
-          getResult
-        } getOrElse {
-          val error = s"${name} not available on ${System.getProperty("os.name")}"
-          log.error(error);
-          ErrorInfo("error" -> error)
-        }))
+  def getResults: Seq[CommandResult]
+
+  def execute: Seq[CommandResult] = {
+    Try {
+      getResults
+    } getOrElse {
+      val error = s"${name} not available on ${System.getProperty("os.name")}"
+      log.error(error);
+      CommandResult(name, ErrorInfo("error" -> error))
+    }
   }
 
   private def camelToUnderscores(name: String) = "[A-Z\\d]".r.replaceAllIn(name, { m =>

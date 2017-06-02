@@ -19,18 +19,22 @@ package com.googlesource.gerrit.plugins.support.commands
 import java.nio.file.Files
 
 import com.google.inject.Inject
-import com.googlesource.gerrit.plugins.support.{SitePathsWrapper, GerritSupportCommand}
+import com.googlesource.gerrit.plugins.support.{CommandResult, GerritSupportCommand, SitePathsWrapper}
 
-class DiskInfoCommand @Inject()(val sitePathsFolder: SitePathsWrapper) extends GerritSupportCommand {
+class DiskInfoCommand @Inject()(val sitePathsFolder: SitePathsWrapper)
+  extends GerritSupportCommand {
 
   case class DiskInfo(path: String, diskFree: Long, diskUsable: Long, diskTotal: Long)
 
-  def getResult = {
+  override def getResults = {
     val dataPath = sitePathsFolder.getAsPath("data_dir")
     val store = Files.getFileStore(dataPath)
-    DiskInfo(dataPath.toString, store.getUnallocatedSpace,
-      store.getUsableSpace, store.getTotalSpace
-    )
+    CommandResult(nameJson,
+      DiskInfo(
+        dataPath.toString,
+        store.getUnallocatedSpace,
+        store.getUsableSpace,
+        store.getTotalSpace))
   }
 
 }
