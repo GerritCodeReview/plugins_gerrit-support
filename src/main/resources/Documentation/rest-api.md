@@ -29,9 +29,9 @@ collected and archived in the .zip file.
     "diskUsable": 95003811840,
     "path": "/home/pakkio/g2.14-stable/data"
 }
-
 ```
-
+- configInfo - This will add in the zip all the *.config files in the $GERRIT/etc folder
+ 
 NOTE: API must be authenticated with the credentials of a user with the
 'Collect Server Data' capability.
 
