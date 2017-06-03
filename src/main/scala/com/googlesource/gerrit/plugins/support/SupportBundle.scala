@@ -65,7 +65,7 @@ class SupportBundleBuilder @Inject()(@PluginDataPath val directory: Path, gson: 
     val zipBundle =  new ZipOutputStream(new FileOutputStream(file))
     results.foreach { result =>
       zipBundle.putNextEntry(new ZipEntry(result.entryName))
-      zipBundle.write(result.content.toString.getBytes(UTF8))
+      zipBundle.write(result.content.getBytes)
     }
     zipBundle.close()
     file

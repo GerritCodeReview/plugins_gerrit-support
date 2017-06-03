@@ -16,6 +16,8 @@
 
 package com.googlesource.gerrit.plugins.support
 
+import java.nio.charset.Charset
+
 import com.google.gson.{Gson, JsonElement, JsonObject}
 import com.google.inject._
 import com.googlesource.gerrit.plugins.support.GerritSupportCommand.{CommandResult, JsonResult, ResultName}
@@ -34,23 +36,33 @@ object GerritSupportCommand {
   // allows returning a pure Json result or a textual file content
   case class CommandResult(entryName: ResultName, content: AnyResult)
 
-  trait AnyResult
+  trait AnyResult {
+    def getBytes: Array[Byte]
+  }
 
   case class JsonResult(result: JsonElement)(implicit val gson: Gson) extends AnyResult {
-    override def toString: String = gson.toJson(result)
+    override def getBytes: Array[Byte] = gson.toJson(result)
   }
 
   case class TextResult(result: String) extends AnyResult {
-    override def toString: String = result
+    override def getBytes: Array[Byte] = result
   }
 
-  implicit def convertAny2CommandResult(x: Any)(implicit resultName: ResultName, gson: Gson) =
+  case class BinResult(result: Array[Byte]) extends AnyResult {
+    override def getBytes: Array[Byte] = result
+  }
+
+  implicit def convertAny2CommandResult(x: Any)(implicit resultName: ResultName, gson: Gson): CommandResult =
     x match {
       case res: AnyResult => CommandResult(resultName, res)
       case anyRes => CommandResult(resultName, JsonResult(gson.toJsonTree(anyRes)))
     }
 
-  implicit def convertString2TextResult(x:String) = TextResult(x)
+  val UTF8 = Charset.forName("UTF-8")
+
+  implicit def convertStringToBinary(x:String):Array[Byte] = x.getBytes(UTF8)
+  implicit def convertString2TextResult(x:String): TextResult = TextResult(x)
+  implicit def convertBinary2BinResult(x:Array[Byte]): BinResult = BinResult(x)
 }
 
 abstract class GerritSupportCommand {
@@ -66,7 +78,7 @@ abstract class GerritSupportCommand {
 
   def getResults: Seq[CommandResult] = Seq(getResult)
 
-  def getResult: CommandResult
+  def getResult: CommandResult = null
 
   def execute: Seq[CommandResult] = {
     Try {

@@ -18,7 +18,7 @@ package com.googlesource.gerrit.plugins.support
 
 import java.nio.file.Paths
 
-import com.googlesource.gerrit.plugins.support.GerritSupportCommand.{CommandResult, JsonResult, ResultName, TextResult}
+import com.googlesource.gerrit.plugins.support.GerritSupportCommand._
 import com.googlesource.gerrit.plugins.support.commands._
 import org.mockito.Matchers.any
 import org.mockito.Mockito
@@ -59,6 +59,17 @@ class GerritSupportTest extends FlatSpec with Matchers
     name.value should be ("disk_info")
     diskInfo should not be null
     diskInfo.getAsJsonObject should haveValidFields
+  }
+
+  "config-info command" should "return some binary content" in {
+    val wrapper = Mockito.mock(classOf[SitePathsWrapper])
+    Mockito.when(wrapper.getAsPath(any[String])).thenReturn(tmpPath.toPath)
+    tmpConfigFile
+    val commands = new ConfigInfoCommand(wrapper).execute
+    commands should not be empty
+    val BinResult(content) = commands.head.content
+
+    content should not be empty
   }
 
 }
