@@ -55,6 +55,16 @@ class GerritSupportTest extends FlatSpec with Matchers
     diskInfo should not be null
     diskInfo.getAsJsonObject should haveValidFields
   }
+  "config-info command" should "return some files" in {
+    val wrapper = Mockito.mock(classOf[SitePathsWrapper])
+    Mockito.when(wrapper.getAsPath(any[String])).thenReturn(tmpPath.toPath)
+    tmpConfigFile
+    val commands = new ConfigInfoCommand(wrapper).execute
+    commands.length should be > 0
+    val TextResult(content) = commands(0).content
+
+    content.size should be > 0
+  }
 
 }
 
