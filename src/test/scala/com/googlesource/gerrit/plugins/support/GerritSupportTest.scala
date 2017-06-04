@@ -16,8 +16,11 @@
 
 package com.googlesource.gerrit.plugins.support
 
+import java.io.PrintWriter
 import java.nio.file.Paths
 
+import com.google.gerrit.server.plugins.{ListPlugins, PluginsCollection}
+import com.google.gson.JsonObject
 import com.googlesource.gerrit.plugins.support.commands._
 import org.mockito.Matchers.any
 import org.mockito.Mockito
@@ -66,5 +69,50 @@ class GerritSupportTest extends FlatSpec with Matchers
     content.size should be > 0
   }
 
+  "plugins-info command" should "return some data" in {
+
+    // returns a valid tmp path for any path requested
+    val mockedWrapper = {
+      val mock = Mockito.mock(classOf[SitePathsWrapper])
+      Mockito.when(mock.getAsPath(any[String])).thenReturn(tmpPath.toPath)
+      mock
+    }
+
+    // returns a JsonObject for any calls
+    val mockedPluginsCollection = {
+      val mockedListPlugins = {
+        val mock = Mockito.mock(classOf[ListPlugins])
+        Mockito.when(mock.display(any[PrintWriter]))
+          .thenReturn(new JsonObject)
+        mock
+      }
+
+      val mock = Mockito.mock(classOf[PluginsCollection])
+      Mockito.when(mock.list()).thenReturn(mockedListPlugins)
+      mock
+    }
+
+    val results = new PluginsInfoCommand(
+      mockedWrapper,
+      mockedPluginsCollection).execute
+
+    // assert we returns three entries for plugins_dir, lib_dir and
+    // plugins_version
+    checkValidJsonArray(results(0),"plugins_dir")
+    checkValidJsonArray(results(1),"lib_dir")
+    checkValidTextResult(results(2),"plugins_versions")
+
+  }
+
+  private def checkValidJsonArray(result: CommandResult, name: String) = {
+    result.entryName should be(name)
+    val JsonResult(jsonArray) = result.content
+    jsonArray.isJsonArray should be(true)
+  }
+  private def checkValidTextResult(result: CommandResult, name: String) = {
+    result.entryName should be(name)
+    val TextResult(text) = result.content
+    text should not be null
+  }
 }
 
