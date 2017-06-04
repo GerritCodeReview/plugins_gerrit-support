@@ -10,6 +10,7 @@ res = doQuery(target+getPath, {
     "cpuInfo" => "true",
     "diskInfo" => "true",
     "configInfo" => "true",
+    "pluginsInfo" => "true",
 })
 assert res.code == "201"
 location = res.header['location']
