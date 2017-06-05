@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "778ab477_6dd6b787",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/GerritSupportCommands.scala",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-05T05:27:05Z",
+      "side": 1,
+      "message": "AnyResult?",
+      "range": {
+        "startLine": 28,
+        "startChar": 6,
+        "endLine": 28,
+        "endChar": 16
+      },
+      "revId": "2ca8072244a7e11e508fa179ab6a078703bab131",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e700cb0f_1d449204",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/GerritSupportCommands.scala",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-05T05:27:05Z",
+      "side": 1,
+      "message": "A bit useless IMHO. It would be more readable just add Seq() on the result instead of wondering why the method is supposed to return a sequence and instead it doesn\u0027t.",
+      "revId": "2ca8072244a7e11e508fa179ab6a078703bab131",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "48c6fda1_419ca7fd",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/GerritSupportCommands.scala",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-05T05:27:05Z",
+      "side": 1,
+      "message": "Some of the commands return a single result, others a set of results. Why don\u0027t we allow both methods and the command overrides the one he likes?",
+      "revId": "2ca8072244a7e11e508fa179ab6a078703bab131",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f75e22e8_fc93b38e",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/GerritSupportCommands.scala",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-05T05:27:05Z",
+      "side": 1,
+      "message": "Why not auto-boxing with an errorInfo2CommandResult implicit conversion as well?\n\nCommand name could be an implicit parameter.",
+      "range": {
+        "startLine": 55,
+        "startChar": 6,
+        "endLine": 55,
+        "endChar": 25
+      },
+      "revId": "2ca8072244a7e11e508fa179ab6a078703bab131",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "21931d09_01dbe7bd",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/DiskInfoCommand.scala",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-05T05:27:05Z",
+      "side": 1,
+      "message": "Don\u0027t like the readability: the method suggests that returns more than one result ... but the body says something different.",
+      "range": {
+        "startLine": 29,
+        "startChar": 15,
+        "endLine": 29,
+        "endChar": 25
+      },
+      "revId": "2ca8072244a7e11e508fa179ab6a078703bab131",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dafa1528_7a07e0d2",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/GerritVersionCommand.scala",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-05T05:27:05Z",
+      "side": 1,
+      "message": "This is what the body tells already: do we really need to comment it?",
+      "revId": "2ca8072244a7e11e508fa179ab6a078703bab131",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "845fc3ac_9c866151",
+        "filename": "src/test/scala/com/googlesource/gerrit/plugins/support/GerritSupportTest.scala",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-05T05:27:05Z",
+      "side": 1,
+      "message": "do we need to assert something about the name as well?",
+      "range": {
+        "startLine": 30,
+        "startChar": 26,
+        "endLine": 30,
+        "endChar": 30
+      },
+      "revId": "2ca8072244a7e11e508fa179ab6a078703bab131",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
