@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a52783a4_3dbb1f9a",
+        "filename": "src/main/resources/Documentation/rest-api.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-05T07:40:27Z",
+      "side": 1,
+      "message": "Is this a Markdown notation? Seems that Gitiles doesn\u0027t render it and it really seems like a conflict delimiter :-(",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 30
+      },
+      "revId": "abe000322ef5f2d531812d3e9a6157ab980e5946",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "43a5ddbf_5cf967df",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/FileAttribute.scala",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-05T07:40:27Z",
+      "side": 1,
+      "message": "Why an empty body? Just get rid of it !",
+      "range": {
+        "startLine": 26,
+        "startChar": 51,
+        "endLine": 27,
+        "endChar": 1
+      },
+      "revId": "abe000322ef5f2d531812d3e9a6157ab980e5946",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0fc29757_f1dd4780",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/PluginsInfoCommand.scala",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-05T07:40:27Z",
+      "side": 1,
+      "message": "Seq()",
+      "range": {
+        "startLine": 41,
+        "startChar": 7,
+        "endLine": 41,
+        "endChar": 8
+      },
+      "revId": "abe000322ef5f2d531812d3e9a6157ab980e5946",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c2d0a63d_4f155bbc",
+        "filename": "src/test/scala/com/googlesource/gerrit/plugins/support/GerritSupportTest.scala",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-05T07:40:27Z",
+      "side": 1,
+      "message": "Assertions should be in the test body and NOT in a 3rd function.\nWhy don\u0027t you implement a customer matcher instead?",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 23
+      },
+      "revId": "abe000322ef5f2d531812d3e9a6157ab980e5946",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
