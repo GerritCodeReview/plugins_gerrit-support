@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7244ceae_2e8ba130",
+        "filename": "src/main/resources/Documentation/rest-api.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1023193
+      },
+      "writtenOn": "2017-06-05T21:54:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7784afb0_2e25968e",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 1
+      },
+      "revId": "50991b932b96bba7bc854618a67127e4db74c181",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4159cacf_efd29ac3",
         "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/ConfigInfoCommand.scala",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2017-06-05T07:23:37Z",
       "side": 1,
       "message": "I wouldn\u0027t do that: files may be encoded differently and contain invalid characters. We don\u0027t want to modify in any way by encoding/decoding them. Better to introduce a new type \"BinResult\" and just read the content as binary.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 43
+      },
+      "revId": "50991b932b96bba7bc854618a67127e4db74c181",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a004e3d_91aff265",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/ConfigInfoCommand.scala",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1023193
+      },
+      "writtenOn": "2017-06-05T21:54:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4159cacf_efd29ac3",
       "range": {
         "startLine": 42,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "224fdf8b_7fdb0b37",
+        "filename": "src/test/scala/com/googlesource/gerrit/plugins/support/GerritSupportTest.scala",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1023193
+      },
+      "writtenOn": "2017-06-05T21:54:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a2e7d84_41258bc5",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 33
+      },
+      "revId": "50991b932b96bba7bc854618a67127e4db74c181",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7b142505_ac963626",
         "filename": "src/test/scala/com/googlesource/gerrit/plugins/support/GerritSupportTest.scala",
         "patchSetId": 2
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "6c751006_15da522a",
+        "filename": "src/test/scala/com/googlesource/gerrit/plugins/support/GerritSupportTest.scala",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1023193
+      },
+      "writtenOn": "2017-06-05T21:54:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b142505_ac963626",
+      "range": {
+        "startLine": 69,
+        "startChar": 30,
+        "endLine": 69,
+        "endChar": 41
+      },
+      "revId": "50991b932b96bba7bc854618a67127e4db74c181",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d21811e_101974fd",
         "filename": "src/test/scala/com/googlesource/gerrit/plugins/support/GerritSupportTest.scala",
         "patchSetId": 2
@@ -105,6 +201,30 @@
       "writtenOn": "2017-06-05T07:23:37Z",
       "side": 1,
       "message": "Again, use the ScalaTest collections matchers:\n\n  content should not be empty",
+      "range": {
+        "startLine": 71,
+        "startChar": 17,
+        "endLine": 71,
+        "endChar": 30
+      },
+      "revId": "50991b932b96bba7bc854618a67127e4db74c181",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bdd17dd4_a4dd6220",
+        "filename": "src/test/scala/com/googlesource/gerrit/plugins/support/GerritSupportTest.scala",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1023193
+      },
+      "writtenOn": "2017-06-05T21:54:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d21811e_101974fd",
       "range": {
         "startLine": 71,
         "startChar": 17,
