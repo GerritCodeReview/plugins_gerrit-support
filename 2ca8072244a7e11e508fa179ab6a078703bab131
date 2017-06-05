@@ -226,6 +226,30 @@
       "revId": "2ca8072244a7e11e508fa179ab6a078703bab131",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57d56eac_589188b5",
+        "filename": "src/test/scala/com/googlesource/gerrit/plugins/support/GerritSupportTest.scala",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-05T07:19:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "845fc3ac_9c866151",
+      "range": {
+        "startLine": 30,
+        "startChar": 26,
+        "endLine": 30,
+        "endChar": 30
+      },
+      "revId": "2ca8072244a7e11e508fa179ab6a078703bab131",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
