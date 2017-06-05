@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c43d394e_05a2cbfd",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/SitePathsWrapper.scala",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-05T05:11:21Z",
+      "side": 1,
+      "message": "Nit: extra empty line.",
+      "revId": "7dae7c6010fb922c461017e0b3f471815d8975a3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b387a7cd_06c4a79e",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/DiskInfoCommand.scala",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-05T05:11:21Z",
+      "side": 1,
+      "message": "Nit: extra empty line.",
+      "revId": "7dae7c6010fb922c461017e0b3f471815d8975a3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
