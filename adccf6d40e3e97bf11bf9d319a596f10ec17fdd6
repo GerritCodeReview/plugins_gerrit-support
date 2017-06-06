@@ -22,6 +22,30 @@
       "revId": "adccf6d40e3e97bf11bf9d319a596f10ec17fdd6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3b4adf0a_9b0162c8",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/ConfigInfoCommand.scala",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1023193
+      },
+      "writtenOn": "2017-06-06T12:41:35Z",
+      "side": 1,
+      "message": "the only possible theoretical problem I see in having it managed by the outer catch is that if the error is ephemeral and relative to a specific file then we can try with the other files, otherwise we have the entire command blocked. However since we are not expecting to have problems in reading bytes from a file except in fatal circumstances it can be easier this way :)",
+      "parentUuid": "aeb8e7f1_86bcf26d",
+      "range": {
+        "startLine": 39,
+        "startChar": 13,
+        "endLine": 41,
+        "endChar": 51
+      },
+      "revId": "adccf6d40e3e97bf11bf9d319a596f10ec17fdd6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
