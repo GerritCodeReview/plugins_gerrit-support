@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6acd493_8d9b0b37",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/ConfigInfoCommand.scala",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-06T05:18:40Z",
+      "side": 1,
+      "message": "You typically use Try (instead of try) because you want to return the result and the error management to the caller. Here you just want to do a try / catch ... which is fine, but just use try / catch instead :-)",
+      "range": {
+        "startLine": 52,
+        "startChar": 6,
+        "endLine": 52,
+        "endChar": 10
+      },
+      "revId": "fe35cfe7fbb820a1d6c132ff4f66e0018ce985aa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e06c8ea_d6d2aed7",
+        "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/ConfigInfoCommand.scala",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-06T05:18:40Z",
+      "side": 1,
+      "message": "Are we sure we want to return null?",
+      "range": {
+        "startLine": 60,
+        "startChar": 10,
+        "endLine": 60,
+        "endChar": 14
+      },
+      "revId": "fe35cfe7fbb820a1d6c132ff4f66e0018ce985aa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
