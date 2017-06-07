@@ -18,6 +18,7 @@ package com.googlesource.gerrit.plugins.support
 
 import java.nio.file.Paths
 
+import com.google.gson.{Gson, JsonElement}
 import com.googlesource.gerrit.plugins.support.GerritSupportCommand._
 import com.googlesource.gerrit.plugins.support.commands._
 import org.mockito.Matchers.any
@@ -72,5 +73,39 @@ class GerritSupportTest extends FlatSpec with Matchers
     content should not be empty
   }
 
+  "plugins-info command" should "return some data" in {
+    val gson = new Gson
+
+    // returns a valid tmp path for any path requested
+    val mockedWrapper = {
+      val mock = Mockito.mock(classOf[SitePathsWrapper])
+      Mockito.when(mock.getAsPath(any[String])).thenReturn(tmpPath.toPath)
+      mock
+    }
+
+    val pluginsInfo = gson.toJsonTree(
+      Map("myplugin" -> PluginInfo("pluginId", "1.0", "/plugins/myplugin", false)))
+    val mockedPluginsCollection = new PluginsInfoProvider { def getPluginsInfo = pluginsInfo }
+
+    // assert we returns three entries for plugins_dir, lib_dir and
+    // plugins_version
+    val Seq(plugins_dir, lib_dir, plugins_versions) =
+    new PluginsInfoCommand(
+      mockedWrapper,
+      mockedPluginsCollection).execute
+
+    plugins_dir.entryName.value should be("plugins_dir")
+    val JsonResult(plugins_dir_result) = plugins_dir.content
+    plugins_dir_result.getAsJsonArray.size should not be 0
+
+    lib_dir.entryName.value should be("lib_dir")
+    val JsonResult(lib_dir_result) = lib_dir.content
+    lib_dir_result.getAsJsonArray.size should not be 0
+
+    plugins_versions.entryName.value should be("plugins_versions")
+    val JsonResult(pluginsInfoJson) = plugins_versions.content
+
+    pluginsInfoJson should be (pluginsInfo)
+  }
 }
 
