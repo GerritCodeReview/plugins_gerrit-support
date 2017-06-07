@@ -31,7 +31,31 @@ collected and archived in the .zip file.
 }
 ```
 - configInfo - This will add in the zip all the *.config files in the $GERRIT/etc folder
+- pluginsInfo - This will add 3 elements in the zip containing the plugins_dir,
+  lib_dir and the versions for each plugin. Here a possible output:
+```
+lib_dir:
+[
 
+]
+
+plugins_dir:
+[
+  {
+    "name": "gerrit-support.jar",
+    "perms": "rw-rw-r--",
+    "owner": "pakkio",
+    "group": "pakkio",
+    "date": "2017-06-04T08:35:02Z",
+    "size": 9639813
+  }
+]
+
+plugins_versions:
+Name                           Version    Status   File
+-------------------------------------------------------------------------------
+gerrit-support                 1.0-SNAPSHOT ENABLED  gerrit-support.jar
+```
 NOTE: API must be authenticated with the credentials of a user with the
 'Collect Server Data' capability.
 
