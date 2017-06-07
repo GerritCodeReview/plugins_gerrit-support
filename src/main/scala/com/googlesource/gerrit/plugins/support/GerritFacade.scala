@@ -16,7 +16,11 @@
 
 package com.googlesource.gerrit.plugins.support
 
+import com.google.gerrit.extensions.restapi.{TopLevelResource, Url}
 import com.google.gerrit.server.account.CapabilityControl
+import com.google.gerrit.server.plugins.{ListPlugins, Plugin}
+import com.google.gson.JsonElement
+import com.google.inject.{ImplementedBy, Inject}
 import com.googlesource.gerrit.plugins.support.latest.LatestCapabilityControl
 import com.googlesource.gerrit.plugins.support.legacy.LegacyCapabilityControl
 
@@ -44,4 +48,18 @@ object TryAll {
       case t: Throwable => Failure(t)
     }
   }
+}
+
+// Structure of the JSON fields returned by the pluginsInfo method
+case class PluginInfo(id: String, version: String, indexUrl: String, disabled: Boolean)
+
+@ImplementedBy(classOf[GerritPluginsInfoProvider])
+trait PluginsInfoProvider {
+
+  def getPluginsInfo: JsonElement
+}
+
+class GerritPluginsInfoProvider @Inject() (val listPlugins: ListPlugins) extends PluginsInfoProvider {
+
+  override def getPluginsInfo: JsonElement = listPlugins.apply(TopLevelResource.INSTANCE).asInstanceOf[JsonElement]
 }
