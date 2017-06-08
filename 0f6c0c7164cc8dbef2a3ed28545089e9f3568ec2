@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5e76c2ed_cdfd5a0b",
+        "filename": "src/main/resources/Documentation/rest-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-08T08:34:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be96dd75_1dd3e9a2",
+      "revId": "0f6c0c7164cc8dbef2a3ed28545089e9f3568ec2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46c0b511_efe51ef5",
         "filename": "src/main/resources/Documentation/rest-api.md",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "b394006d_1623a60e",
+        "filename": "src/main/resources/Documentation/rest-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-08T08:34:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46c0b511_efe51ef5",
+      "revId": "0f6c0c7164cc8dbef2a3ed28545089e9f3568ec2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f48fce65_a48bd00e",
         "filename": "src/test/scala/com/googlesource/gerrit/plugins/support/GerritSupportTest.scala",
         "patchSetId": 1
@@ -47,6 +83,30 @@
       "writtenOn": "2017-06-08T08:18:01Z",
       "side": 1,
       "message": "Unused methods.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 3
+      },
+      "revId": "0f6c0c7164cc8dbef2a3ed28545089e9f3568ec2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb04c88a_7ec3683f",
+        "filename": "src/test/scala/com/googlesource/gerrit/plugins/support/GerritSupportTest.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-08T08:34:58Z",
+      "side": 1,
+      "message": "Methods removed.",
+      "parentUuid": "f48fce65_a48bd00e",
       "range": {
         "startLine": 119,
         "startChar": 0,
