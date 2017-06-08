@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be96dd75_1dd3e9a2",
+        "filename": "src/main/resources/Documentation/rest-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-08T08:18:01Z",
+      "side": 1,
+      "message": "Why not putting a sample element inside?",
+      "revId": "0f6c0c7164cc8dbef2a3ed28545089e9f3568ec2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46c0b511_efe51ef5",
+        "filename": "src/main/resources/Documentation/rest-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-08T08:18:01Z",
+      "side": 1,
+      "message": "It would be best to have this as JSON as well, similar to the list Plugins REST API:\n\n  {\n     \"gerrit-support\": {\n        \"id\"       : \"gerrit-support\",\n        \"version\"  : \"1.0\",\n        \"indexUrl\" : \"/plugins/myplugin\",\n        \"disabled\" : false }\n  }",
+      "revId": "0f6c0c7164cc8dbef2a3ed28545089e9f3568ec2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f48fce65_a48bd00e",
+        "filename": "src/test/scala/com/googlesource/gerrit/plugins/support/GerritSupportTest.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2017-06-08T08:18:01Z",
+      "side": 1,
+      "message": "Unused methods.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 3
+      },
+      "revId": "0f6c0c7164cc8dbef2a3ed28545089e9f3568ec2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
