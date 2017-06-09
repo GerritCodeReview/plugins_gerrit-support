@@ -22,6 +22,7 @@ collected and archived in the .zip file.
 - cpuInfo - JSON Object with all the CPU information collected by [jHardware](https://github.com/profesorfalken/jHardware)
 - memInfo - JSON Object with all the Memory information collected by [jHardware](https://github.com/profesorfalken/jHardware)
 - diskInfo - JSON Object describing the disk information. Here a possible output:
+
 ```
 {
     "diskFree": 106969321472,
@@ -30,11 +31,14 @@ collected and archived in the .zip file.
     "path": "/home/pakkio/g2.14-stable/data"
 }
 ```
+
 - configInfo - This will add in the zip all the *.config files in the $GERRIT/etc folder
 - pluginsInfo - This will add 3 elements in the zip containing the plugins_dir,
   lib_dir and the versions for each plugin. Here a possible output:
-```
+
 lib_dir:
+
+```
 [
   {
     "name": "github-oauth.jar",
@@ -45,8 +49,11 @@ lib_dir:
     "size": 128567
   }
 ]
+```
 
 plugins_dir:
+
+```
 [
   {
     "name": "gerrit-support.jar",
@@ -57,8 +64,11 @@ plugins_dir:
     "size": 9639813
   }
 ]
+```
 
 plugins_versions:
+
+```
 {
      "gerrit-support": {
         "id"       : "gerrit-support",
@@ -67,6 +77,7 @@ plugins_versions:
         "disabled" : false }
 }
 ```
+
 NOTE: API must be authenticated with the credentials of a user with the
 'Collect Server Data' capability.
 
@@ -87,6 +98,7 @@ curl -v -H "Content-Type: application/json" \
 < Content-Length: 2
 
 ```
+
 NOTE: Location header gives the name of the prepared file created on Gerrit
 server. API must be authenticated with the credentials of a user with the
 'Collect Server Data' capability.
