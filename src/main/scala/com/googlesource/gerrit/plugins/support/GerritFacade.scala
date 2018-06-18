@@ -17,12 +17,11 @@
 package com.googlesource.gerrit.plugins.support
 
 import com.google.gerrit.extensions.restapi.TopLevelResource
-import com.google.gerrit.server.account.CapabilityControl
+import com.google.gerrit.server.account.AccountLimits
 import com.google.gerrit.server.plugins.{ListPlugins, PluginsCollection}
 import com.google.gson.JsonElement
 import com.google.inject.{ImplementedBy, Inject}
 import com.googlesource.gerrit.plugins.support.latest.LatestCapabilityControl
-import com.googlesource.gerrit.plugins.support.legacy.LegacyCapabilityControl
 
 import scala.util.{Failure, Success, Try}
 
@@ -30,11 +29,10 @@ object GerritFacade {
 
   class PluginName(val value: String) extends AnyRef
 
-  implicit class PimpedCapabilityControl(val cc: CapabilityControl) extends AnyVal {
+  implicit class PimpedCapabilityControl(val cc: AccountLimits) extends AnyVal {
 
     def canDo(operation: String)(implicit pluginName: PluginName) =
       LatestCapabilityControl(cc).canPerform(operation)
-        .orElse(LegacyCapabilityControl(cc).canPerform(operation))
         .get
   }
 }

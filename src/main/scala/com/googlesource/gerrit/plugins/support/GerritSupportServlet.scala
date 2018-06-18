@@ -20,6 +20,7 @@ import java.io.{File, FileNotFoundException}
 
 import com.google.gerrit.extensions.annotations.{PluginName => GerritPlugiName}
 import com.google.gerrit.server.CurrentUser
+import com.google.gerrit.server.account.AccountLimits
 import com.google.inject.{Inject, Provider, Singleton}
 import com.googlesource.gerrit.plugins.support.GerritFacade._
 import com.googlesource.gerrit.plugins.support.latest.CollectServerDataCapability._
@@ -36,6 +37,7 @@ class GerritSupportServlet @Inject()(val processor: RequestProcessor,
                                      bundleFactory: SupportBundleFile,
                                      mimeDetector: ExtensionMimeDetector,
                                      currentUserProvider: Provider[CurrentUser],
+                                     accountLimitsFactory: AccountLimits.Factory,
                                      @GerritPlugiName gerritPluginName: String)
   extends ScalatraServlet with Mimes {
   val log = LoggerFactory.getLogger(classOf[GerritSupportServlet])
@@ -75,7 +77,7 @@ class GerritSupportServlet @Inject()(val processor: RequestProcessor,
   private def requireAdministrateServerPermissions(block: => ActionResult) = {
     val currentUser = currentUserProvider.get
     currentUser match {
-      case user if user.isIdentifiedUser && user.getCapabilities.canDo(COLLECT_SERVER_DATA) => block
+      case user if user.isIdentifiedUser && accountLimitsFactory.create(user).canDo(COLLECT_SERVER_DATA) => block
       case _ => Forbidden("NOT ALLOWED to collect server data")
     }
   }

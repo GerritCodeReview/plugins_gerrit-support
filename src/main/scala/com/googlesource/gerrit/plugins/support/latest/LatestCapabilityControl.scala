@@ -16,13 +16,13 @@
 
 package com.googlesource.gerrit.plugins.support.latest
 
-import com.google.gerrit.server.account.CapabilityControl
+import com.google.gerrit.server.account.AccountLimits
 import com.googlesource.gerrit.plugins.support.GerritFacade.PluginName
 
 import scala.util.Try
 import com.googlesource.gerrit.plugins.support.TryAll
 
-class LatestCapabilityControl(val capabilityControl: CapabilityControl)(implicit pluginName: PluginName) {
+class LatestCapabilityControl(val capabilityControl: AccountLimits)(implicit pluginName: PluginName) {
 
   import LatestCapabilityControl._
 
@@ -52,8 +52,8 @@ object LatestCapabilityControl {
   }.flatten
 
   lazy val checkPermissionMethod = TryAll {
-    GlobalOrPluginPermissionClass.map(classOf[CapabilityControl].getMethod("doCanForDefaultPermissionBackend", _))
+    GlobalOrPluginPermissionClass.map(classOf[AccountLimits].getMethod("doCanForDefaultPermissionBackend", _))
   }.flatten
 
-  def apply(cc: CapabilityControl)(implicit pluginName: PluginName) = new LatestCapabilityControl(cc)
+  def apply(cc: AccountLimits)(implicit pluginName: PluginName) = new LatestCapabilityControl(cc)
 }
