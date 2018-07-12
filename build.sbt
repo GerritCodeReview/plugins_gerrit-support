@@ -6,7 +6,7 @@ version := "1.0-SNAPSHOT"
 
 scalaVersion := "2.11.8"
 
-val gerritVersion = "2.15.1"
+val gerritVersion = "2.14.10"
 
 val scalatraV = "2.4.+"
 

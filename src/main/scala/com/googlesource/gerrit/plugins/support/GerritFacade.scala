@@ -21,7 +21,6 @@ import com.google.gerrit.server.account.CapabilityControl
 import com.google.gerrit.server.plugins.{ListPlugins, PluginsCollection}
 import com.google.gson.JsonElement
 import com.google.inject.{ImplementedBy, Inject}
-import com.googlesource.gerrit.plugins.support.latest.LatestCapabilityControl
 import com.googlesource.gerrit.plugins.support.legacy.LegacyCapabilityControl
 
 import scala.util.{Failure, Success, Try}
@@ -32,10 +31,7 @@ object GerritFacade {
 
   implicit class PimpedCapabilityControl(val cc: CapabilityControl) extends AnyVal {
 
-    def canDo(operation: String)(implicit pluginName: PluginName) =
-      LatestCapabilityControl(cc).canPerform(operation)
-        .orElse(LegacyCapabilityControl(cc).canPerform(operation))
-        .get
+    def canDo(operation: String)(implicit pluginName: PluginName) = LegacyCapabilityControl(cc).canPerform(operation)
   }
 }
 

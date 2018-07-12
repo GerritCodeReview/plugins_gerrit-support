@@ -75,7 +75,7 @@ class GerritSupportServlet @Inject()(val processor: RequestProcessor,
   private def requireAdministrateServerPermissions(block: => ActionResult) = {
     val currentUser = currentUserProvider.get
     currentUser match {
-      case user if user.isIdentifiedUser && user.getCapabilities.canDo(COLLECT_SERVER_DATA) => block
+      case user if user.isIdentifiedUser && user.getCapabilities.canDo(COLLECT_SERVER_DATA).getOrElse(false) => block
       case _ => Forbidden("NOT ALLOWED to collect server data")
     }
   }
