@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1884a30d_a87c1234",
+        "filename": "src/main/resources/Documentation/rest-api.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2018-09-22T23:17:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a52783a4_3dbb1f9a",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 30
+      },
+      "revId": "abe000322ef5f2d531812d3e9a6157ab980e5946",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "43a5ddbf_5cf967df",
         "filename": "src/main/scala/com/googlesource/gerrit/plugins/support/commands/FileAttribute.scala",
         "patchSetId": 4
