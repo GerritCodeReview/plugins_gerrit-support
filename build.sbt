@@ -6,7 +6,7 @@ version := "1.0-SNAPSHOT"
 
 scalaVersion := "2.11.8"
 
-val gerritVersion = "2.15.2"
+val gerritVersion = "2.16.7"
 
 val scalatraV = "2.4.+"
 
@@ -16,8 +16,8 @@ libraryDependencies ++= Seq(
   // provided by gerrit
   "com.google.inject"     %   "guice"             % "3.0"       % Provided,
   "com.google.gerrit"     %   "gerrit-plugin-api" % gerritVersion % Provided,
-  "com.google.code.gson"  %   "gson"              % "2.7"       % Provided,
-  "joda-time"             %   "joda-time"         % "2.9.4"     % Provided,
+  "com.google.code.gson"  %   "gson"              % "2.8.5"     % Provided,
+  "joda-time"             %   "joda-time"         % "2.9.4",
 
   // added to assembly
   "org.scalatra"          %%  "scalatra"          % scalatraV,
