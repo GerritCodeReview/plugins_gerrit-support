@@ -15,10 +15,5 @@ package org.jutils.jhardware.model;
 
 import java.io.Serializable;
 
-/**
- *
- * @author Javier Garcia Alonso
- */
-public interface ComponentInfo extends Serializable {
-    
-}
+/** @author Javier Garcia Alonso */
+public interface ComponentInfo extends Serializable {}

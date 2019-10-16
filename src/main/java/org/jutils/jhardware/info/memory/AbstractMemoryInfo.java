@@ -19,31 +19,28 @@ import org.jutils.jhardware.model.MemoryInfo;
 
 /**
  * Information related to Memory
- * 
+ *
  * @author Javier Garcia Alonso
  */
-public abstract class AbstractMemoryInfo implements HardwareInfo { 
+public abstract class AbstractMemoryInfo implements HardwareInfo {
 
-    /**
-     *
-     * @return
-     */
-    @Override
-    public MemoryInfo getInfo() {
-        return buildFromDataMap(parseInfo());
+  /** @return */
+  @Override
+  public MemoryInfo getInfo() {
+    return buildFromDataMap(parseInfo());
+  }
+
+  protected abstract Map<String, String> parseInfo();
+
+  protected MemoryInfo buildFromDataMap(Map<String, String> dataMap) {
+    MemoryInfo info = new MemoryInfo();
+    info.setFullInfo(dataMap);
+    if (dataMap != null && !dataMap.isEmpty()) {
+      info.setAvailableMemory(dataMap.get("MemAvailable"));
+      info.setFreeMemory(dataMap.get("MemFree"));
+      info.setTotalMemory(dataMap.get("MemTotal"));
     }
-    
-    protected abstract Map<String, String> parseInfo();
-    
-    protected MemoryInfo buildFromDataMap(Map<String, String> dataMap) {
-        MemoryInfo info = new MemoryInfo();
-        info.setFullInfo(dataMap);
-        if (dataMap != null && !dataMap.isEmpty()) {
-            info.setAvailableMemory(dataMap.get("MemAvailable"));
-            info.setFreeMemory(dataMap.get("MemFree"));
-            info.setTotalMemory(dataMap.get("MemTotal"));
-        }
-        
-        return info;
-    }
+
+    return info;
+  }
 }

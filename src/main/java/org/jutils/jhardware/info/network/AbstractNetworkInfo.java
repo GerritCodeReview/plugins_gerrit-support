@@ -22,44 +22,41 @@ import org.jutils.jhardware.model.NetworkInterfaceInfo;
 
 /**
  * Information related to Network
- * 
+ *
  * @author Javier Garcia Alonso
  */
-public abstract class AbstractNetworkInfo implements HardwareInfo { 
+public abstract class AbstractNetworkInfo implements HardwareInfo {
 
-    /**
-     *
-     * @return
-     */
-    @Override
-    public NetworkInfo getInfo() {
-        return buildFromDataMap(parseInfo());
+  /** @return */
+  @Override
+  public NetworkInfo getInfo() {
+    return buildFromDataMap(parseInfo());
+  }
+
+  protected abstract Map<String, String> parseInfo();
+
+  protected NetworkInfo buildFromDataMap(Map<String, String> dataMap) {
+    NetworkInfo info = new NetworkInfo();
+
+    List<NetworkInterfaceInfo> interfacesList = new ArrayList<>();
+    if (!dataMap.isEmpty()) {
+      int interfacesLength = Integer.parseInt(dataMap.get("interfacesLength"));
+      for (int i = 1; i <= interfacesLength; i++) {
+        NetworkInterfaceInfo interfaceInfo = new NetworkInterfaceInfo();
+        interfaceInfo.setName(dataMap.get("interface_" + i));
+        interfaceInfo.setType(dataMap.get("type_" + i));
+        interfaceInfo.setIpv4(dataMap.get("ipv4_" + i));
+        interfaceInfo.setIpv6(dataMap.get("ipv6_" + i));
+        interfaceInfo.setReceivedPackets(dataMap.get("received_packets_" + i));
+        interfaceInfo.setTransmittedPackets(dataMap.get("transmitted_packets_" + i));
+        interfaceInfo.setReceivedBytes(dataMap.get("received_bytes_" + i));
+        interfaceInfo.setTransmittedBytes(dataMap.get("transmitted_bytes_" + i));
+        interfacesList.add(interfaceInfo);
+      }
     }
-    
-    protected abstract Map<String, String> parseInfo();
-    
-    protected NetworkInfo buildFromDataMap(Map<String, String> dataMap) {
-        NetworkInfo info = new NetworkInfo();
-        
-        List<NetworkInterfaceInfo> interfacesList = new ArrayList<>();
-        if (!dataMap.isEmpty()) {
-            int interfacesLength = Integer.parseInt(dataMap.get("interfacesLength"));
-            for (int i = 1; i<=interfacesLength; i++) {
-                NetworkInterfaceInfo interfaceInfo = new NetworkInterfaceInfo();
-                interfaceInfo.setName(dataMap.get("interface_" + i));
-                interfaceInfo.setType(dataMap.get("type_" + i));
-                interfaceInfo.setIpv4(dataMap.get("ipv4_" + i));
-                interfaceInfo.setIpv6(dataMap.get("ipv6_" + i));
-                interfaceInfo.setReceivedPackets(dataMap.get("received_packets_" + i));
-                interfaceInfo.setTransmittedPackets(dataMap.get("transmitted_packets_" + i));
-                interfaceInfo.setReceivedBytes(dataMap.get("received_bytes_" + i));
-                interfaceInfo.setTransmittedBytes(dataMap.get("transmitted_bytes_" + i));
-                interfacesList.add(interfaceInfo);
-            }
-        }
-        
-        info.setNetworkInterfaces(interfacesList);
-        
-        return info;
-    }
+
+    info.setNetworkInterfaces(interfacesList);
+
+    return info;
+  }
 }

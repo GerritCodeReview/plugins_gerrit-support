@@ -26,125 +26,119 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- *
- * @author Javier Garcia Alonso
- */
+/** @author Javier Garcia Alonso */
 public class HardwareInfoUtils {
 
-    private static final String CRLF = "\r\n";
+  private static final String CRLF = "\r\n";
 
-    private static final String NOT_FOUND = "NOT_FOUND";
+  private static final String NOT_FOUND = "NOT_FOUND";
 
-    private static final Logger log = Logger.getLogger(HardwareInfoUtils.class.getName());
-    
-    //Hide constructor
-    private HardwareInfoUtils() {
+  private static final Logger log = Logger.getLogger(HardwareInfoUtils.class.getName());
 
+  // Hide constructor
+  private HardwareInfoUtils() {}
+
+  public static List<String> readFile(String filePath) {
+    Path path = Paths.get(filePath);
+
+    List<String> fileLines = new ArrayList<>();
+    try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
+      String line;
+      while (null != (line = reader.readLine())) {
+        fileLines.add(line);
+      }
+    } catch (IOException ex) {
+      log.log(Level.SEVERE, "Unable to read file " + filePath, ex);
     }
 
-    public static List<String> readFile(String filePath) {
-        Path path = Paths.get(filePath);
+    return fileLines;
+  }
 
-        List<String> fileLines = new ArrayList<>();
-        try(BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
-            String line;
-            while(null != (line = reader.readLine())) {
-                fileLines.add(line);
-            }
-        } catch (IOException ex) {
-            log.log(Level.SEVERE, "Unable to read file " + filePath, ex);
+  public static String getSingleValueFromFile(String filePath) {
+    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+      return reader.readLine();
+    } catch (IOException ex) {
+      log.log(Level.SEVERE, "Unable to read file " + filePath, ex);
+      return null;
+    }
+  }
+
+  public static String executeCommand(String... command) {
+    String commandOutput = null;
+
+    try {
+      ProcessBuilder processBuilder = new ProcessBuilder(command);
+      processBuilder.redirectErrorStream(true); // redirect error stream to output stream
+
+      commandOutput = readData(processBuilder.start());
+    } catch (IOException ex) {
+      Logger.getLogger(HardwareInfoUtils.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    return commandOutput;
+  }
+
+  private static String readData(Process process) {
+    StringBuilder commandOutput = new StringBuilder();
+    BufferedReader processOutput = null;
+
+    try {
+      processOutput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+      String line;
+      while ((line = processOutput.readLine()) != null) {
+        if (!line.isEmpty()) {
+          commandOutput.append(line).append(CRLF);
         }
-
-        return fileLines;
-    }
-    
-    public static String getSingleValueFromFile(String filePath) {
-        try(BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            return reader.readLine();
-        } catch (IOException ex) {
-            log.log(Level.SEVERE, "Unable to read file " + filePath, ex);
-            return null;
+      }
+    } catch (IOException ex) {
+      Logger.getLogger(HardwareInfoUtils.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+      try {
+        if (processOutput != null) {
+          processOutput.close();
         }
+      } catch (IOException ioe) {
+        Logger.getLogger(HardwareInfoUtils.class.getName()).log(Level.SEVERE, null, ioe);
+      }
     }
 
-    public static String executeCommand(String... command) {
-        String commandOutput = null;
+    return commandOutput.toString();
+  }
 
-        try {
-            ProcessBuilder processBuilder = new ProcessBuilder(command);
-            processBuilder.redirectErrorStream(true); // redirect error stream to output stream
+  public static boolean isSudo() {
+    return executeCommand("sudo", "-n", "true").length() == 0;
+  }
 
-            commandOutput = readData(processBuilder.start());
-        } catch (IOException ex) {
-            Logger.getLogger(HardwareInfoUtils.class.getName()).log(Level.SEVERE, null, ex);
-        }
+  public static String toCamelCase(String s) {
+    String[] parts = s.split("_");
+    String camelCaseString = "";
+    for (String part : parts) {
+      camelCaseString = camelCaseString + toProperCase(part);
+    }
+    return camelCaseString;
+  }
 
-        return commandOutput;
+  private static String toProperCase(String s) {
+    return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
+  }
+
+  public static String removeAllSpaces(String s) {
+    return s.replaceAll("\\s+", "");
+  }
+
+  public static String extractText(String text, String regex) {
+    if (text.trim().isEmpty()) {
+      return NOT_FOUND;
     }
 
-    private static String readData(Process process) {
-        StringBuilder commandOutput = new StringBuilder();
-        BufferedReader processOutput = null;
+    final Pattern pattern = Pattern.compile(regex);
+    final Matcher matcher = pattern.matcher(text);
 
-        try {          
-             processOutput = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            
-            String line;
-            while ((line = processOutput.readLine()) != null) {
-                if (!line.isEmpty()) {
-                    commandOutput.append(line).append(CRLF);
-                }
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(HardwareInfoUtils.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (processOutput != null) {
-                    processOutput.close();
-                }
-            } catch (IOException ioe) {
-                Logger.getLogger(HardwareInfoUtils.class.getName()).log(Level.SEVERE, null, ioe);
-            }
-        }
-
-        return commandOutput.toString();
+    matcher.find();
+    if (matcher.groupCount() > 0) {
+      return matcher.group(1);
     }
-
-    public static boolean isSudo() {
-        return executeCommand("sudo", "-n", "true").length() == 0;
-    }
-
-    public static String toCamelCase(String s) {
-        String[] parts = s.split("_");
-        String camelCaseString = "";
-        for (String part : parts) {
-            camelCaseString = camelCaseString + toProperCase(part);
-        }
-        return camelCaseString;
-    }
-
-    private static String toProperCase(String s) {
-        return s.substring(0, 1).toUpperCase()
-                + s.substring(1).toLowerCase();
-    }
-    
-    public static String removeAllSpaces(String s) {
-        return s.replaceAll("\\s+", "");
-    }
-    
-    public static String extractText(String text, String regex) {
-        if (text.trim().isEmpty()) {
-            return NOT_FOUND;
-        }
-
-        final Pattern pattern = Pattern.compile(regex);
-        final Matcher matcher = pattern.matcher(text);
-
-        matcher.find();
-        if (matcher.groupCount() > 0) {
-            return matcher.group(1);
-        }
-        return NOT_FOUND;
-    }
+    return NOT_FOUND;
+  }
 }

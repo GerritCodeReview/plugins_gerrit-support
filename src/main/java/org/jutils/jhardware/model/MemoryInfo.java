@@ -15,48 +15,43 @@ package org.jutils.jhardware.model;
 
 import java.util.Map;
 
-/**
- *
- * @author Javier Garcia Alonso
- */
+/** @author Javier Garcia Alonso */
 public class MemoryInfo implements ComponentInfo {
-    private String totalMemory;
-    private String freeMemory;
-    private String availableMemory;
-   
-    private Map<String, String> fullInfo;
+  private String totalMemory;
+  private String freeMemory;
+  private String availableMemory;
 
-    public String getTotalMemory() {
-        return totalMemory;
-    }
+  private Map<String, String> fullInfo;
 
-    public void setTotalMemory(String totalMemory) {
-        this.totalMemory = totalMemory;
-    }
+  public String getTotalMemory() {
+    return totalMemory;
+  }
 
-    public String getFreeMemory() {
-        return freeMemory;
-    }
+  public void setTotalMemory(String totalMemory) {
+    this.totalMemory = totalMemory;
+  }
 
-    public void setFreeMemory(String freeMemory) {
-        this.freeMemory = freeMemory;
-    }
+  public String getFreeMemory() {
+    return freeMemory;
+  }
 
-    public String getAvailableMemory() {
-        return availableMemory;
-    }
+  public void setFreeMemory(String freeMemory) {
+    this.freeMemory = freeMemory;
+  }
 
-    public void setAvailableMemory(String availableMemory) {
-        this.availableMemory = availableMemory;
-    }
+  public String getAvailableMemory() {
+    return availableMemory;
+  }
 
-    public Map<String, String> getFullInfo() {
-        return fullInfo;
-    }
+  public void setAvailableMemory(String availableMemory) {
+    this.availableMemory = availableMemory;
+  }
 
-    public void setFullInfo(Map<String, String> fullInfo) {
-        this.fullInfo = fullInfo;
-    }
-    
-    
+  public Map<String, String> getFullInfo() {
+    return fullInfo;
+  }
+
+  public void setFullInfo(Map<String, String> fullInfo) {
+    this.fullInfo = fullInfo;
+  }
 }

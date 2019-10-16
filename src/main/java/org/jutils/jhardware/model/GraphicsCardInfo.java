@@ -24,14 +24,13 @@ import java.util.List;
  */
 public class GraphicsCardInfo implements ComponentInfo {
 
-    List<GraphicsCard> graphicsCards;
+  List<GraphicsCard> graphicsCards;
 
-    public List<GraphicsCard> getGraphicsCards() {
-        return graphicsCards;
-    }
+  public List<GraphicsCard> getGraphicsCards() {
+    return graphicsCards;
+  }
 
-    public void setGraphicsCards(List<GraphicsCard> graphicsCards) {
-        this.graphicsCards = graphicsCards;
-    }
-
+  public void setGraphicsCards(List<GraphicsCard> graphicsCards) {
+    this.graphicsCards = graphicsCards;
+  }
 }

@@ -15,12 +15,12 @@ package org.jutils.jhardware.info;
 
 /**
  * The type of information to retrieve
- * 
+ *
  * @author Javier Garcia Alonso
  */
 public enum InfoType {
-    PROCESSOR,
-    MEMORY,
-    OS,
-    NETWORK
+  PROCESSOR,
+  MEMORY,
+  OS,
+  NETWORK
 }

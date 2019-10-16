@@ -15,47 +15,43 @@ package org.jutils.jhardware.model;
 
 import java.util.Map;
 
-/**
- *
- * @author Javier Garcia Alonso
- */
+/** @author Javier Garcia Alonso */
 public class BiosInfo implements ComponentInfo {
-    private String date;
-    private String manufacturer;
-    private String version;
-   
-    private Map<String, String> fullInfo;
+  private String date;
+  private String manufacturer;
+  private String version;
 
-    public String getDate() {
-        return date;
-    }
+  private Map<String, String> fullInfo;
 
-    public void setDate(String date) {
-        this.date = date;
-    }
+  public String getDate() {
+    return date;
+  }
 
-    public String getManufacturer() {
-        return manufacturer;
-    }
+  public void setDate(String date) {
+    this.date = date;
+  }
 
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
+  public String getManufacturer() {
+    return manufacturer;
+  }
 
-    public String getVersion() {
-        return version;
-    }
+  public void setManufacturer(String manufacturer) {
+    this.manufacturer = manufacturer;
+  }
 
-    public void setVersion(String version) {
-        this.version = version;
-    }
-    
-    public Map<String, String> getFullInfo() {
-        return fullInfo;
-    }
+  public String getVersion() {
+    return version;
+  }
 
-    public void setFullInfo(Map<String, String> fullInfo) {
-        this.fullInfo = fullInfo;
-    }
-    
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+  public Map<String, String> getFullInfo() {
+    return fullInfo;
+  }
+
+  public void setFullInfo(Map<String, String> fullInfo) {
+    this.fullInfo = fullInfo;
+  }
 }

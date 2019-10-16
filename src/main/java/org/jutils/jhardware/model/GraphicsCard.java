@@ -15,74 +15,70 @@
  */
 package org.jutils.jhardware.model;
 
-/**
- *
- * @author javier
- */
+/** @author javier */
 public class GraphicsCard {
 
-    private String name;
-    private String manufacturer;
-    private String chipType;
-    private String dacType;
-    private String deviceType;
-    private String temperature;
-    private String fanSpeed;
+  private String name;
+  private String manufacturer;
+  private String chipType;
+  private String dacType;
+  private String deviceType;
+  private String temperature;
+  private String fanSpeed;
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public String getManufacturer() {
-        return manufacturer;
-    }
+  public String getManufacturer() {
+    return manufacturer;
+  }
 
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
+  public void setManufacturer(String manufacturer) {
+    this.manufacturer = manufacturer;
+  }
 
-    public String getChipType() {
-        return chipType;
-    }
+  public String getChipType() {
+    return chipType;
+  }
 
-    public void setChipType(String chipType) {
-        this.chipType = chipType;
-    }
+  public void setChipType(String chipType) {
+    this.chipType = chipType;
+  }
 
-    public String getDacType() {
-        return dacType;
-    }
+  public String getDacType() {
+    return dacType;
+  }
 
-    public void setDacType(String dacType) {
-        this.dacType = dacType;
-    }
+  public void setDacType(String dacType) {
+    this.dacType = dacType;
+  }
 
-    public String getDeviceType() {
-        return deviceType;
-    }
+  public String getDeviceType() {
+    return deviceType;
+  }
 
-    public void setDeviceType(String deviceType) {
-        this.deviceType = deviceType;
-    }
+  public void setDeviceType(String deviceType) {
+    this.deviceType = deviceType;
+  }
 
-    public String getTemperature() {
-        return temperature;
-    }
+  public String getTemperature() {
+    return temperature;
+  }
 
-    public void setTemperature(String temperature) {
-        this.temperature = temperature;
-    }
+  public void setTemperature(String temperature) {
+    this.temperature = temperature;
+  }
 
-    public String getFanSpeed() {
-        return fanSpeed;
-    }
+  public String getFanSpeed() {
+    return fanSpeed;
+  }
 
-    public void setFanSpeed(String fanSpeed) {
-        this.fanSpeed = fanSpeed;
-    }
-
+  public void setFanSpeed(String fanSpeed) {
+    this.fanSpeed = fanSpeed;
+  }
 }

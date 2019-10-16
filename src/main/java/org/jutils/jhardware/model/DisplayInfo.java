@@ -15,18 +15,15 @@ package org.jutils.jhardware.model;
 
 import java.util.List;
 
-/**
- *
- * @author Javier Garcia Alonso
- */
+/** @author Javier Garcia Alonso */
 public class DisplayInfo implements ComponentInfo {
-    List<Display> displayDevices;
+  List<Display> displayDevices;
 
-    public List<Display> getDisplayDevices() {
-        return displayDevices;
-    }
+  public List<Display> getDisplayDevices() {
+    return displayDevices;
+  }
 
-    public void setDisplayDevices(List<Display> displayDevices) {
-        this.displayDevices = displayDevices;
-    }
+  public void setDisplayDevices(List<Display> displayDevices) {
+    this.displayDevices = displayDevices;
+  }
 }

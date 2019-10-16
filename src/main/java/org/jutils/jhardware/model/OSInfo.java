@@ -15,55 +15,51 @@ package org.jutils.jhardware.model;
 
 import java.util.Map;
 
-/**
- *
- * @author Javier Garcia Alonso
- */
+/** @author Javier Garcia Alonso */
 public class OSInfo implements ComponentInfo {
-    private String version;
-    private String lastBootTime;
-    private String name;
-    private String manufacturer;
-    private Map<String, String> fullInfo;
+  private String version;
+  private String lastBootTime;
+  private String name;
+  private String manufacturer;
+  private Map<String, String> fullInfo;
 
-    public String getVersion() {
-        return version;
-    }
+  public String getVersion() {
+    return version;
+  }
 
-    public void setVersion(String version) {
-        this.version = version;
-    }
+  public void setVersion(String version) {
+    this.version = version;
+  }
 
-    public String getLastBootTime() {
-        return lastBootTime;
-    }
+  public String getLastBootTime() {
+    return lastBootTime;
+  }
 
-    public void setLastBootTime(String lastBootTime) {
-        this.lastBootTime = lastBootTime;
-    }
+  public void setLastBootTime(String lastBootTime) {
+    this.lastBootTime = lastBootTime;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public String getManufacturer() {
-        return manufacturer;
-    }
+  public String getManufacturer() {
+    return manufacturer;
+  }
 
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-    
-    public Map<String, String> getFullInfo() {
-        return fullInfo;
-    }
+  public void setManufacturer(String manufacturer) {
+    this.manufacturer = manufacturer;
+  }
 
-    public void setFullInfo(Map<String, String> fullInfo) {
-        this.fullInfo = fullInfo;
-    }
-    
+  public Map<String, String> getFullInfo() {
+    return fullInfo;
+  }
+
+  public void setFullInfo(Map<String, String> fullInfo) {
+    this.fullInfo = fullInfo;
+  }
 }

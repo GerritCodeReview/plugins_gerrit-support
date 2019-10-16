@@ -15,47 +15,42 @@
  */
 package org.jutils.jhardware.model;
 
-/**
- *
- * @author javier
- */
+/** @author javier */
 public class Display {
-    private String name;
-    private String currentResolution;
-    private String refreshRate;
-    private String[] supportedResolutions;
+  private String name;
+  private String currentResolution;
+  private String refreshRate;
+  private String[] supportedResolutions;
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    public String getCurrentResolution() {
-        return currentResolution;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setCurrentResolution(String currentResolution) {
-        this.currentResolution = currentResolution;
-    }
+  public String getCurrentResolution() {
+    return currentResolution;
+  }
 
-    public String getRefreshRate() {
-        return refreshRate;
-    }
+  public void setCurrentResolution(String currentResolution) {
+    this.currentResolution = currentResolution;
+  }
 
-    public void setRefreshRate(String refreshRate) {
-        this.refreshRate = refreshRate;
-    }
+  public String getRefreshRate() {
+    return refreshRate;
+  }
 
-    public String[] getSupportedResolutions() {
-        return supportedResolutions;
-    }
+  public void setRefreshRate(String refreshRate) {
+    this.refreshRate = refreshRate;
+  }
 
-    public void setSupportedResolutions(String[] supportedResolutions) {
-        this.supportedResolutions = supportedResolutions;
-    }
-    
-    
+  public String[] getSupportedResolutions() {
+    return supportedResolutions;
+  }
+
+  public void setSupportedResolutions(String[] supportedResolutions) {
+    this.supportedResolutions = supportedResolutions;
+  }
 }

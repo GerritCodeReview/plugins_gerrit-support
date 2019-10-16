@@ -26,32 +26,29 @@ import org.jutils.jhardware.util.OSDetector;
  */
 public class HardwareFactory {
 
-    /**
-     * Hide constructor
-     */
-    private HardwareFactory() {
-    }
+  /** Hide constructor */
+  private HardwareFactory() {}
 
-    public static HardwareInfo get(InfoType type) {
-        if (OSDetector.isUnix()) {
-            return getUnixInfo(type);
-        } else {
-            throw new UnsupportedOperationException("Your Operating System is not supported");
-        }
+  public static HardwareInfo get(InfoType type) {
+    if (OSDetector.isUnix()) {
+      return getUnixInfo(type);
+    } else {
+      throw new UnsupportedOperationException("Your Operating System is not supported");
     }
+  }
 
-    private static HardwareInfo getUnixInfo(InfoType type) {
-        switch (type) {
-            case PROCESSOR:
-                return new UnixProcessorInfo();
-            case MEMORY:
-                return new UnixMemoryInfo();
-            case OS:
-                return new UnixOSInfo();
-            case NETWORK:
-                return new UnixNetworkInfo();
-            default:
-                throw new IllegalArgumentException("Type of hardware not supported: " + type);
-        }
+  private static HardwareInfo getUnixInfo(InfoType type) {
+    switch (type) {
+      case PROCESSOR:
+        return new UnixProcessorInfo();
+      case MEMORY:
+        return new UnixMemoryInfo();
+      case OS:
+        return new UnixOSInfo();
+      case NETWORK:
+        return new UnixNetworkInfo();
+      default:
+        throw new IllegalArgumentException("Type of hardware not supported: " + type);
     }
+  }
 }
